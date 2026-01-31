@@ -344,6 +344,10 @@ a.column:hover::after {
 		width: min(150px, 40vw);
 	}
 
+	.heading {
+		width: auto;
+	}
+
 	.links {
 		margin-top: 20px;
 	}
