@@ -151,7 +151,9 @@ hr {
 }
 
 .logo > img {
-	width: 20vw;
+	width: min(200px, 20vw);
+	max-width: 100%;
+	height: auto;
 }
 
 .links {
@@ -191,10 +193,10 @@ hr {
 	width: 90%;
 	max-width: 1080px;
 	margin: 0 auto;
-	font-size: min(18px, 1.3vw);
+	font-size: clamp(16px, 2.5vw, 20px);
 	text-align: center;
 	margin-top: 110vh;
-	height: 85vh;
+	min-height: 85vh;
 	margin-bottom: 5vh;
 	border: solid 5px var(--emptcolor);
 	overflow: auto;
@@ -237,7 +239,7 @@ hr {
 .column {
 	transition: all 0.3s ease-in;
 	padding: 1ch;
-	font-size: 1.3rem;
+	font-size: clamp(1rem, 1.3rem, 1.5rem);
 	margin: 5px;
 	text-decoration: none;
 	position: relative;
@@ -267,7 +269,7 @@ a.column:hover::after {
 .heading {
 	width: 100%;
 	padding: 1ch;
-	font-size: 1.3rem;
+	font-size: clamp(1rem, 1.3rem, 1.5rem);
 	margin: 5px;
 	margin-top: 5px;
 	background: var(--accolor);
@@ -315,15 +317,119 @@ a.column:hover::after {
 }
 
 /* Responsive mobile & tablet */
-@media only screen and (max-width: 980px) and (hover: none) and (pointer: coarse) {
-    /* ... */
-    	html {
-    		scroll-snap-type: none !important;
-    	}
+@media only screen and (max-width: 980px) {
+	html {
+		scroll-snap-type: none !important;
+	}
+
+	body {
+		cursor: auto;
+	}
+
+	a:-webkit-any-link {
+		cursor: pointer;
+	}
 
 	.cursor-dot,
 	.cursor-dot-outline {
 		display: none;
 	}
-	
+
+	#container {
+		width: 90%;
+		top: 40%;
+	}
+
+	.logo > img {
+		width: min(150px, 40vw);
+	}
+
+	.links {
+		margin-top: 20px;
+	}
+
+	.links a {
+		height: 40px;
+	}
+
+	.scroll-down {
+		width: 40px;
+		height: 60px !important;
+	}
+
+	.content {
+		width: 95%;
+		font-size: clamp(14px, 3vw, 18px);
+		margin-top: 100vh;
+		min-height: auto;
+		padding-bottom: 20px;
+	}
+
+	.content > div {
+		padding: 4vw;
+	}
+
+	.d-flex {
+		flex-direction: column;
+	}
+
+	.row {
+		margin-bottom: 30px;
+		width: 100%;
+	}
+
+	.column {
+		min-width: 90%;
+		font-size: 1.1rem;
+		margin: 8px 5px;
+	}
+
+	.heading {
+		font-size: 1.1rem;
+	}
+
+	.count {
+		font-size: min(12vw, 45px);
+	}
+}
+
+/* Extra small devices */
+@media only screen and (max-width: 480px) {
+	.logo > img {
+		width: min(120px, 50vw);
+	}
+
+	.links a {
+		height: 35px;
+	}
+
+	.scroll-down {
+		width: 35px;
+		height: 50px !important;
+		border: 2px solid #333;
+	}
+
+	.scroll-down::before {
+		width: 10px;
+		height: 10px;
+	}
+
+	.content {
+		width: 98%;
+		border-width: 3px;
+		margin-top: 100vh;
+	}
+
+	.content > div {
+		padding: 6vw;
+	}
+
+	.heading {
+		font-size: 1rem;
+		padding: 8px;
+	}
+
+	.column {
+		font-size: 1rem;
+	}
 }
