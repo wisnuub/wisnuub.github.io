@@ -344,10 +344,6 @@ a.column:hover::after {
 		width: min(150px, 40vw);
 	}
 
-	.heading {
-		width: auto;
-	}
-
 	.links {
 		margin-top: 20px;
 	}
@@ -389,6 +385,7 @@ a.column:hover::after {
 	}
 
 	.heading {
+		width: auto !important;
 		font-size: 1.1rem;
 	}
 
@@ -429,6 +426,7 @@ a.column:hover::after {
 	}
 
 	.heading {
+		width: auto !important;
 		font-size: 1rem;
 		padding: 8px;
 	}
