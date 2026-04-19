@@ -1,6 +1,7 @@
 // ─── Shared preview thumbnail helper ─────────────────────────────────────
 const LOCAL_THUMBS = {
-    'https://protocoffee.com.au/': './assets/images/proto-coffee.webp',
+    'https://protocoffee.com.au/':  './assets/images/proto-coffee.webp',
+    'https://timesberwick.com.au/': './assets/images/times-berwick.webp',
 };
 function previewThumb(url) {
     return LOCAL_THUMBS[url] ||
