@@ -1,3 +1,12 @@
+// ─── Shared preview thumbnail helper ─────────────────────────────────────
+const LOCAL_THUMBS = {
+    'https://protocoffee.com.au/': './assets/images/proto-coffee.webp',
+};
+function previewThumb(url) {
+    return LOCAL_THUMBS[url] ||
+        `https://api.microlink.io?url=${encodeURIComponent(url)}&screenshot=true&meta=false&embed=screenshot.url`;
+}
+
 window.addEventListener('load', () => {
     gsap.registerPlugin(ScrollTrigger);
     initTearEffect(); // preload texture during loader so hero is ready instantly
@@ -6,68 +15,74 @@ window.addEventListener('load', () => {
 
 // ─── Loader: W-A(logo)-K curtain reveal ──────────────────────────────────
 function initLoader() {
-    const loader  = document.getElementById('loader');
-    const counter = { val: 0 };
+    const loader = document.getElementById('loader');
+    const bar    = document.querySelector('.loader-bar');
+    const numEl  = document.querySelector('.loader-num');
 
-    // Reveal bottom bar after letters settle
-    gsap.set('.loader-bottom', { opacity: 0 });
-
-    const tl = gsap.timeline({
-        defaults: { ease: 'power4.out' },
-        onComplete() {
-            document.body.classList.remove('is-loading');
-            initSite();
-        }
+    // Kick off prefetch of all work preview images immediately
+    const workLinks = Array.from(document.querySelectorAll('.work-item[href]'));
+    let loaded = 0;
+    const total = workLinks.length;
+    workLinks.forEach(el => {
+        const img = new Image();
+        img.onload = img.onerror = () => loaded++;
+        img.src = previewThumb(el.getAttribute('href'));
     });
 
-    tl
-        // ── Letters slide up through their clip masks (staggered)
-        .to(['.ll-w', '.ll-logo', '.ll-k'], {
-            y: '0%',
-            duration: 1.2,
-            stagger: 0.1,
-        }, 0)
+    // Phase 1: letter reveal (fixed ~1s)
+    gsap.set(['.loader-bottom', bar], { opacity: 0 });
+    if (bar) bar.style.width = '0%';
 
-        // ── Progress bar + counter fade in
-        .to('.loader-bottom', { opacity: 1, duration: 0.4 }, 0.6)
+    const letterTl = gsap.timeline({ defaults: { ease: 'power4.out' } });
+    letterTl
+        .to(['.ll-w', '.ll-logo', '.ll-k'], { y: '0%', duration: 1.2, stagger: 0.1 }, 0)
+        .to('.loader-bottom', { opacity: 1, duration: 0.4 }, 0.6);
 
-        // ── Bar fills
-        .to('.loader-bar', {
-            width: '100%',
-            duration: 1.7,
-            ease: 'power1.inOut'
-        }, 0.7)
+    // Phase 2: progress bar driven by actual image loading
+    const MIN_MS = 2500;
+    const MAX_MS = 6000;
+    const start  = Date.now();
+    let   display = 0;
+    let   exiting = false;
 
-        // ── Counter counts 0 → 100
-        .to(counter, {
-            val: 100,
-            duration: 1.7,
-            ease: 'power1.inOut',
-            onUpdate() {
-                const el = document.querySelector('.loader-num');
-                if (el) el.textContent = Math.round(counter.val);
-            }
-        }, 0.7)
+    function tick() {
+        const elapsed  = Date.now() - start;
+        const real     = total > 0 ? loaded / total : 1;
+        const timeFrac = Math.min(elapsed / MAX_MS, 1);
+        // Time nudges bar up to 90% max; real progress can push past that
+        const target   = Math.min(Math.max(real, timeFrac * 0.9) * 100, 100);
 
-        // ── Brief hold at 100
+        display += (target - display) * 0.06;
+        const pct = Math.min(Math.round(display), 100);
+
+        if (bar)   bar.style.width   = pct + '%';
+        if (numEl) numEl.textContent = pct;
+
+        const done    = real >= 1 || elapsed >= MAX_MS;
+        const minMet  = elapsed >= MIN_MS;
+
+        if (!exiting && done && minMet && pct >= 99) {
+            exiting = true;
+            exitLoader();
+        } else {
+            requestAnimationFrame(tick);
+        }
+    }
+
+    letterTl.then(() => requestAnimationFrame(tick));
+
+    function exitLoader() {
+        gsap.timeline({
+            onComplete() { document.body.classList.remove('is-loading'); initSite(); }
+        })
         .to({}, { duration: 0.2 })
-
-        // ── Letters slide back down before curtain rises
         .to(['.ll-w', '.ll-logo', '.ll-k'], {
-            y: '110%',
-            duration: 0.7,
-            ease: 'power3.in',
+            y: '110%', duration: 0.7, ease: 'power3.in',
             stagger: { amount: 0.12, from: 'center' }
         })
-
-        // ── Curtain shoots upward
-        .to(loader, {
-            yPercent: -100,
-            duration: 1.1,
-            ease: 'expo.inOut'
-        }, '-=0.35')
-
+        .to(loader, { yPercent: -100, duration: 1.1, ease: 'expo.inOut' }, '-=0.35')
         .set(loader, { display: 'none' });
+    }
 }
 
 // ─── DevTools Guard ───────────────────────────────────────────────────────
@@ -619,11 +634,6 @@ function initWorkPreview() {
     if (!preview || !previewImg) return;
     if (!window.matchMedia('(pointer: fine)').matches) return;
 
-    const localThumbs = {
-        'https://protocoffee.com.au/': './assets/images/proto-coffee.webp',
-    };
-    const thumb = url => localThumbs[url] || `https://api.microlink.io?url=${encodeURIComponent(url)}&screenshot=true&meta=false&embed=screenshot.url`;
-
     const W = preview.offsetWidth  || 320;
     const H = preview.offsetHeight || 210;
 
@@ -657,7 +667,7 @@ function initWorkPreview() {
     document.querySelectorAll('.work-item').forEach(item => {
         const url = item.getAttribute('href');
         item.addEventListener('mouseenter', () => {
-            previewImg.src = thumb(url);
+            previewImg.src = previewThumb(url);
             preview.classList.add('visible');
         });
         item.addEventListener('mouseleave', () => {
