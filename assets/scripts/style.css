@@ -593,6 +593,9 @@ body.dt-open > *:not(#dt-guard) { visibility: hidden !important; }
     border-bottom: 1px solid var(--border);
     cursor: none;
     overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    outline: none;
 }
 
 .svc-text { display: block; overflow: hidden; }
