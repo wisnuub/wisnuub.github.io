@@ -637,11 +637,11 @@ function initWorkPreview() {
         curY = e.clientY;
     });
 
-    // Continuous RAF lerp — same feel as the ring cursor (factor 0.1)
+    // Slower lerp than ring cursor (0.05 vs 0.11) — trails behind like a train
     (function loop() {
         requestAnimationFrame(loop);
-        pvX += (curX - pvX) * 0.1;
-        pvY += (curY - pvY) * 0.1;
+        pvX += (curX - pvX) * 0.05;
+        pvY += (curY - pvY) * 0.05;
 
         // Center card on cursor
         let x = pvX - W / 2;
