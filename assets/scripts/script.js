@@ -619,7 +619,10 @@ function initWorkPreview() {
     if (!preview || !previewImg) return;
     if (!window.matchMedia('(pointer: fine)').matches) return;
 
-    const thumb = url => `https://api.microlink.io?url=${encodeURIComponent(url)}&screenshot=true&meta=false&embed=screenshot.url`;
+    const localThumbs = {
+        'https://protocoffee.com.au/': './assets/images/proto-coffee.webp',
+    };
+    const thumb = url => localThumbs[url] || `https://api.microlink.io?url=${encodeURIComponent(url)}&screenshot=true&meta=false&embed=screenshot.url`;
 
     const W = preview.offsetWidth  || 320;
     const H = preview.offsetHeight || 210;
