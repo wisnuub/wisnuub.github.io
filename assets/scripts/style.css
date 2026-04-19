@@ -110,6 +110,10 @@ body.dt-open > *:not(#dt-guard) { visibility: hidden !important; }
 /* The logo replaces the letter A */
 .ll-mid { line-height: 0; margin-left: -1.6em; margin-bottom: -1.1em; }
 
+@media (max-width: 600px) {
+    .ll-mid { margin-left: -0.8em; margin-bottom: -0.4em; }
+}
+
 .ll-logo {
     display: block;
     /* match the full em height of W / K */
@@ -231,14 +235,14 @@ body.dt-open > *:not(#dt-guard) { visibility: hidden !important; }
 .nav-links a:hover { color: var(--text); }
 
 .nav-socials { display: flex; align-items: center; gap: 16px; }
-.nav-socials a img {
-    height: 20px;
-    filter: brightness(0) invert(1);
-    opacity: 0.4;
-    display: block;
-    transition: opacity 0.3s;
+.nav-socials a {
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.3s;
 }
-.nav-socials a:hover img { opacity: 1; }
+.nav-socials a:hover { color: var(--text); }
 
 /*
 |-----------------------------------------------
@@ -402,7 +406,7 @@ body.dt-open > *:not(#dt-guard) { visibility: hidden !important; }
 
 /*
 |-----------------------------------------------
-| About — editorial Fleava layout
+| About
 |-----------------------------------------------
 */
 
@@ -574,7 +578,7 @@ body.dt-open > *:not(#dt-guard) { visibility: hidden !important; }
 
 /*
 |-----------------------------------------------
-| Services — Fleava hover-reveal menu
+| Services
 |-----------------------------------------------
 */
 .services-menu {
@@ -775,12 +779,10 @@ body.dt-open > *:not(#dt-guard) { visibility: hidden !important; }
 }
 .work-item:hover .work-title { color: var(--accent); }
 
-.work-arrow { font-size: 1.2rem; transition: transform 0.3s; flex-shrink: 0; }
-.work-item:hover .work-arrow { transform: translateX(8px); }
 
 /*
 |-----------------------------------------------
-| Footer  (Fleava-style)
+| Footer
 |-----------------------------------------------
 */
 .footer {

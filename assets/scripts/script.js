@@ -205,7 +205,7 @@ function initHero() {
     gsap.to(['.hero-quote p', '.hero-scroll'], { opacity: 1, y: 0, duration: 1.2, delay: 0.4, ease: 'power3.out', stagger: 0.15 });
 }
 
-// ─── Hero: Ravi-style face dissolution + mouse parallax ──────────────────
+// ─── Hero: glitch face effect + mouse parallax ──────────────────
 function initTearEffect() {
     const canvas = document.getElementById('tear-canvas');
     if (!canvas || !window.THREE) return;
@@ -232,6 +232,8 @@ function initTearEffect() {
         uniform vec2 uMouse;
         uniform vec2 uCoverScale;
         uniform vec2 uCoverOffset;
+        uniform vec2 uFaceCenter;
+        uniform vec2 uFaceSize;
         varying vec2 vUv;
 
         float hash(vec2 p) {
@@ -260,8 +262,7 @@ function initTearEffect() {
             vec2 baseUv = uv * uCoverScale + uCoverOffset + mouse;
 
             // Face ellipse mask
-            vec2 faceCenter = vec2(0.5, 0.63);
-            vec2 faceCoord  = (uv - faceCenter) / vec2(0.24, 0.30);
+            vec2 faceCoord  = (uv - uFaceCenter) / uFaceSize;
             float faceDist  = length(faceCoord);
             float faceMask  = 1.0 - smoothstep(0.60, 1.20, faceDist);
 
@@ -334,7 +335,16 @@ function initTearEffect() {
         uMouse:       { value: new THREE.Vector2(0.5, 0.5) },
         uCoverScale:  { value: new THREE.Vector2(1.0, 1.0) },
         uCoverOffset: { value: new THREE.Vector2(0.0, 0.0) },
+        uFaceCenter:  { value: new THREE.Vector2(0.5, 0.63) },
+        uFaceSize:    { value: new THREE.Vector2(0.24, 0.30) },
     };
+
+    function updateFaceMask() {
+        const mobile = window.innerWidth < 768;
+        uniforms.uFaceCenter.value.set(0.5, mobile ? 0.56 : 0.58);
+        uniforms.uFaceSize.value.set(mobile ? 0.32 : 0.20, mobile ? 0.28 : 0.30);
+    }
+    updateFaceMask();
 
     const mat  = new THREE.ShaderMaterial({ vertexShader, fragmentShader, uniforms, transparent: true });
     const mesh = new THREE.Mesh(geo, mat);
@@ -352,7 +362,7 @@ function initTearEffect() {
     }
 
     const loader = new THREE.TextureLoader();
-    loader.load('./assets/images/hero.png', tex => {
+    loader.load('./assets/images/hero.webp', tex => {
         tex.minFilter = THREE.LinearFilter;
         uniforms.uTex.value = tex;
         const img = tex.image;
@@ -369,7 +379,7 @@ function initTearEffect() {
         }
     }
     resize();
-    window.addEventListener('resize', resize);
+    window.addEventListener('resize', () => { resize(); updateFaceMask(); });
 
     document.addEventListener('mousemove', e => {
         uniforms.uMouse.value.set(
@@ -546,7 +556,7 @@ function initScrollAnimations() {
     });
 }
 
-// ─── Services — Fleava hover-reveal ──────────────────────────────────────
+// ─── Services — hover-reveal ──────────────────────────────────────
 function initServicesMenu() {
     const reveal  = document.getElementById('svc-reveal');
     const revImg  = document.getElementById('svc-reveal-img');
@@ -604,52 +614,49 @@ function initServicesMenu() {
 
 // ─── Work item: cursor-following screenshot preview ───────────────────────
 function initWorkPreview() {
-    const preview  = document.getElementById('work-preview');
+    const preview    = document.getElementById('work-preview');
     const previewImg = document.getElementById('work-preview-img');
     if (!preview || !previewImg) return;
-
-    // Only on desktop (pointer: fine)
     if (!window.matchMedia('(pointer: fine)').matches) return;
 
-    let curX = 0, curY = 0;
-    let pvX  = 0, pvY  = 0;
-    let raf;
+    const thumb = url => `https://api.microlink.io?url=${encodeURIComponent(url)}&screenshot=true&meta=false&embed=screenshot.url`;
 
-    // Use WordPress mshots — free, no key needed, generates live screenshots
-    const thumb = url =>
-        `https://s.wordpress.com/mshots/v1/${encodeURIComponent(url)}?w=640`;
+    const W = preview.offsetWidth  || 320;
+    const H = preview.offsetHeight || 210;
+
+    let curX = window.innerWidth  / 2;
+    let curY = window.innerHeight / 2;
+    let pvX  = curX;
+    let pvY  = curY;
 
     document.addEventListener('mousemove', e => {
         curX = e.clientX;
         curY = e.clientY;
     });
 
-    function loop() {
+    // Continuous RAF lerp — same feel as the ring cursor (factor 0.1)
+    (function loop() {
+        requestAnimationFrame(loop);
         pvX += (curX - pvX) * 0.1;
         pvY += (curY - pvY) * 0.1;
 
-        // Offset: right of cursor, above
-        let x = pvX + 28;
-        let y = pvY - 230;
+        // Center card on cursor
+        let x = pvX - W / 2;
+        let y = pvY - H / 2;
 
-        // Clamp inside viewport
-        x = Math.max(8, Math.min(window.innerWidth  - 336, x));
-        y = Math.max(8, Math.min(window.innerHeight - 220, y));
+        x = Math.max(8, Math.min(window.innerWidth  - W - 8, x));
+        y = Math.max(8, Math.min(window.innerHeight - H - 8, y));
 
         preview.style.left = x + 'px';
         preview.style.top  = y + 'px';
-        raf = requestAnimationFrame(loop);
-    }
+    })();
 
     document.querySelectorAll('.work-item').forEach(item => {
         const url = item.getAttribute('href');
-
         item.addEventListener('mouseenter', () => {
             previewImg.src = thumb(url);
             preview.classList.add('visible');
-            if (!raf) loop();
         });
-
         item.addEventListener('mouseleave', () => {
             preview.classList.remove('visible');
         });
