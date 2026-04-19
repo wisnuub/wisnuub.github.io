@@ -597,6 +597,11 @@ body.dt-open > *:not(#dt-guard) { visibility: hidden !important; }
     color: inherit;
     outline: none;
 }
+.svc-item:focus,
+.svc-item:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: -2px;
+}
 
 .svc-text { display: block; overflow: hidden; }
 
