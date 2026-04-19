@@ -651,7 +651,7 @@ function initServicesMenu() {
     });
 }
 
-// ─── Three.js Interactive 3D House ───────────────────────────────────────
+// ─── Three.js Interactive 3D House (OBJ wireframe) ───────────────────────
 function init3D() {
     const canvas = document.getElementById('three-canvas');
     if (!canvas || typeof THREE === 'undefined') return;
@@ -659,62 +659,118 @@ function init3D() {
     const W = canvas.offsetWidth  || 800;
     const H = canvas.offsetHeight || 480;
 
-    const scene    = new THREE.Scene();
-    const camera   = new THREE.PerspectiveCamera(50, W / H, 0.1, 500);
-    camera.position.set(0, 2.5, 9);
+    const scene  = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(50, W / H, 0.01, 1000);
 
     const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
     renderer.setSize(W, H);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.setClearColor(0x000000, 0);
 
-    const redMat   = new THREE.LineBasicMaterial({ color: 0xfd3737, transparent: true, opacity: 0.9 });
-    const whiteMat = new THREE.LineBasicMaterial({ color: 0xf0ece4, transparent: true, opacity: 0.3 });
-    const dimMat   = new THREE.LineBasicMaterial({ color: 0x3a3a3a, transparent: true, opacity: 0.9 });
-    const gridMat  = new THREE.LineBasicMaterial({ color: 0x181818, transparent: true, opacity: 1 });
-
-    const house = new THREE.Group();
-    scene.add(house);
-
-    // Main body
-    house.add(new THREE.LineSegments(new THREE.WireframeGeometry(new THREE.BoxGeometry(3.4, 2.4, 2.8)), redMat));
-
-    // Roof
-    const roof = new THREE.LineSegments(new THREE.WireframeGeometry(new THREE.ConeGeometry(2.6, 1.8, 4)), whiteMat);
-    roof.position.y = 2.1;
-    roof.rotation.y = Math.PI / 4;
-    house.add(roof);
-
-    // Door
-    const door = new THREE.LineSegments(new THREE.WireframeGeometry(new THREE.BoxGeometry(0.72, 1.15, 0.06)), dimMat);
-    door.position.set(0, -0.62, 1.41);
-    house.add(door);
-
-    // Windows x2
-    [-1.1, 1.1].forEach(x => {
-        const win = new THREE.LineSegments(new THREE.WireframeGeometry(new THREE.BoxGeometry(0.78, 0.58, 0.06)), dimMat);
-        win.position.set(x, 0.28, 1.41);
-        house.add(win);
-    });
-
-    // Chimney
-    const ch = new THREE.LineSegments(new THREE.WireframeGeometry(new THREE.BoxGeometry(0.44, 1.1, 0.44)), redMat);
-    ch.position.set(1.1, 2.5, 0.3);
-    house.add(ch);
-
-    // Ground grid
+    const gridMat = new THREE.LineBasicMaterial({ color: 0x181818, transparent: true, opacity: 1 });
     const grid = new THREE.LineSegments(new THREE.WireframeGeometry(new THREE.PlaneGeometry(18, 18, 18, 18)), gridMat);
     grid.rotation.x = -Math.PI / 2;
-    grid.position.y = -1.2;
     scene.add(grid);
 
-    // Particles
     const pPos = new Float32Array(100 * 3);
     for (let i = 0; i < pPos.length; i++) pPos[i] = (Math.random() - 0.5) * 20;
     const pGeo = new THREE.BufferGeometry();
     pGeo.setAttribute('position', new THREE.BufferAttribute(pPos, 3));
     const particles = new THREE.Points(pGeo, new THREE.PointsMaterial({ color: 0xfd3737, size: 0.045, transparent: true, opacity: 0.5 }));
     scene.add(particles);
+
+    const house = new THREE.Group();
+    scene.add(house);
+
+    const redMat   = new THREE.LineBasicMaterial({ color: 0xfd3737, transparent: true, opacity: 0.7 });
+    const whiteMat = new THREE.LineBasicMaterial({ color: 0xf0ece4, transparent: true, opacity: 0.32 });
+
+    Promise.all([
+        fetch('./assets/models/house.mtl').then(r => r.text()),
+        fetch('./assets/models/house.obj').then(r => r.text()),
+    ]).then(([mtlText, objText]) => {
+
+        // Classify materials: textured = interior (red), plain = structure (white)
+        const interiorMats = new Set();
+        let curMat = null;
+        for (const raw of mtlText.split('\n')) {
+            const p = raw.trimStart();
+            if (p.startsWith('newmtl '))  curMat = p.slice(7).trim();
+            else if (p.startsWith('map_Kd') && curMat) interiorMats.add(curMat);
+        }
+
+        // Parse OBJ into two index streams sharing one vertex pool
+        const verts    = [];
+        const redIdx   = [];
+        const whiteIdx = [];
+        let vertCount  = 0;
+        let isInterior = false;
+
+        for (const raw of objText.split('\n')) {
+            const p = raw.trimStart();
+            if (p.charCodeAt(0) === 118 && p.charCodeAt(1) === 32) { // 'v '
+                const parts = p.split(/\s+/);
+                verts.push(parseFloat(parts[1]) || 0, parseFloat(parts[2]) || 0, parseFloat(parts[3]) || 0);
+                vertCount++;
+            } else if (p.startsWith('usemtl ')) {
+                isInterior = interiorMats.has(p.slice(7).trim());
+            } else if (p.charCodeAt(0) === 102 && p.charCodeAt(1) === 32) { // 'f '
+                const pts = p.split(/\s+/).slice(1).map(t => {
+                    const i = parseInt(t.split('/')[0], 10);
+                    return i > 0 ? i - 1 : vertCount + i;
+                }).filter(i => i >= 0 && i < vertCount);
+                if (pts.length >= 3) {
+                    const target = isInterior ? redIdx : whiteIdx;
+                    for (let i = 1; i < pts.length - 1; i++) target.push(pts[0], pts[i], pts[i + 1]);
+                }
+            }
+        }
+
+        const posAttr = new THREE.BufferAttribute(new Float32Array(verts), 3);
+
+        // Auto-fit: compute scale + centering before building meshes
+        const tmpGeo = new THREE.BufferGeometry();
+        tmpGeo.setAttribute('position', posAttr);
+        tmpGeo.computeBoundingBox();
+        const box    = tmpGeo.boundingBox;
+        const size   = box.getSize(new THREE.Vector3());
+        const center = box.getCenter(new THREE.Vector3());
+        const scale  = 6 / Math.max(size.x, size.y, size.z);
+        // Lift so the model bottom sits on the grid (y = 0)
+        const yLift  = (center.y - box.min.y) * scale;
+
+        // Pivot sub-group: shifts OBJ vertices so the model centre is at local (0,0,0)
+        // house.rotation.y then spins the model in place around its own centre
+        const pivot = new THREE.Group();
+        pivot.position.set(-center.x, -center.y, -center.z); // OBJ units (scale applied by house)
+        house.add(pivot);
+
+        function addWireLayer(idxArr, mat) {
+            if (!idxArr.length) return;
+            const geo = new THREE.BufferGeometry();
+            geo.setAttribute('position', posAttr);
+            geo.setIndex(new THREE.BufferAttribute(new Uint32Array(idxArr), 1));
+            pivot.add(new THREE.LineSegments(new THREE.WireframeGeometry(geo), mat));
+        }
+        addWireLayer(redIdx,   redMat);
+        addWireLayer(whiteIdx, whiteMat);
+
+        house.scale.setScalar(scale);
+        house.position.set(0, yLift, 0);
+        grid.position.y = 0;
+
+        // Refit camera
+        const hbox  = new THREE.Box3().setFromObject(house);
+        const hcen  = hbox.getCenter(new THREE.Vector3());
+        const hsize = hbox.getSize(new THREE.Vector3());
+        const dist  = Math.max(hsize.x, hsize.z) * 1.8;
+        camera.position.set(hcen.x, hcen.y + hsize.y * 0.3, hcen.z + dist);
+        lookTarget.copy(hcen);
+        camera.lookAt(lookTarget);
+
+    }).catch(err => console.error('OBJ load failed:', err));
+
+    const lookTarget = new THREE.Vector3(0, 0.7, 0);
 
     // Mouse parallax
     let tx = 0, ty = 0;
@@ -723,7 +779,8 @@ function init3D() {
         ty = (e.clientY / window.innerHeight - 0.5) * 2;
     });
 
-    camera.lookAt(0, 0.7, 0);
+    camera.position.set(0, 2.5, 9);
+    camera.lookAt(lookTarget);
 
     (function animate() {
         requestAnimationFrame(animate);
@@ -731,7 +788,7 @@ function init3D() {
         particles.rotation.y += 0.001;
         camera.position.x += (tx * 1.6 - camera.position.x) * 0.035;
         camera.position.y += (-ty * 0.9 + 2.5 - camera.position.y) * 0.035;
-        camera.lookAt(0, 0.7, 0);
+        camera.lookAt(lookTarget);
         renderer.render(scene, camera);
     })();
 
