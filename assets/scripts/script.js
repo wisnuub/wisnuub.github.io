@@ -125,7 +125,6 @@ function initSite() {
     initScrollAnimations();
     initServicesMenu();
     init3D();
-    initWorkPreview();
     const yearEl = document.getElementById('footer-year');
     if (yearEl) yearEl.textContent = new Date().getFullYear();
 }
@@ -613,11 +612,33 @@ function initServicesMenu() {
         requestAnimationFrame(loop);
     })();
 
-    document.querySelectorAll('.svc-item').forEach(item => {
-        const img = item.dataset.img;
+    const inner = reveal.querySelector('.svc-reveal__inner');
+
+    function setImage(img) {
+        if (active) {
+            // Switch: scale down → swap → scale up
+            gsap.to(inner, {
+                scale: 0.75, opacity: 0, duration: 0.18, ease: 'power2.in',
+                onComplete() {
+                    revImg.style.backgroundImage = `url('${img}')`;
+                    gsap.to(inner, { scale: 1, opacity: 1, duration: 0.32, ease: 'power2.out' });
+                }
+            });
+        } else {
+            revImg.style.backgroundImage = `url('${img}')`;
+        }
+    }
+
+    const allItems = [
+        ...document.querySelectorAll('.svc-item'),
+        ...document.querySelectorAll('.work-item[href]'),
+    ];
+
+    allItems.forEach(item => {
+        const img = item.dataset.img || previewThumb(item.getAttribute('href'));
 
         item.addEventListener('mouseenter', () => {
-            revImg.style.backgroundImage = `url('${img}')`;
+            setImage(img);
             reveal.classList.add('active');
             active = true;
         });
@@ -625,55 +646,6 @@ function initServicesMenu() {
         item.addEventListener('mouseleave', () => {
             reveal.classList.remove('active');
             active = false;
-        });
-    });
-}
-
-// ─── Work item: cursor-following screenshot preview ───────────────────────
-function initWorkPreview() {
-    const preview    = document.getElementById('work-preview');
-    const previewImg = document.getElementById('work-preview-img');
-    if (!preview || !previewImg) return;
-    if (!window.matchMedia('(pointer: fine)').matches) return;
-
-    const W = preview.offsetWidth  || 320;
-    const H = preview.offsetHeight || 210;
-
-    let curX = window.innerWidth  / 2;
-    let curY = window.innerHeight / 2;
-    let pvX  = curX;
-    let pvY  = curY;
-
-    document.addEventListener('mousemove', e => {
-        curX = e.clientX;
-        curY = e.clientY;
-    });
-
-    // Slower lerp than ring cursor (0.05 vs 0.11) — trails behind like a train
-    (function loop() {
-        requestAnimationFrame(loop);
-        pvX += (curX - pvX) * 0.05;
-        pvY += (curY - pvY) * 0.05;
-
-        // Center card on cursor
-        let x = pvX - W / 2;
-        let y = pvY - H / 2;
-
-        x = Math.max(8, Math.min(window.innerWidth  - W - 8, x));
-        y = Math.max(8, Math.min(window.innerHeight - H - 8, y));
-
-        preview.style.left = x + 'px';
-        preview.style.top  = y + 'px';
-    })();
-
-    document.querySelectorAll('.work-item').forEach(item => {
-        const url = item.getAttribute('href');
-        item.addEventListener('mouseenter', () => {
-            previewImg.src = previewThumb(url);
-            preview.classList.add('visible');
-        });
-        item.addEventListener('mouseleave', () => {
-            preview.classList.remove('visible');
         });
     });
 }
