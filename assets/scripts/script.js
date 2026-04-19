@@ -30,7 +30,7 @@ function initLoader() {
     });
 
     // Phase 1: letter reveal (fixed ~1s)
-    gsap.set(['.loader-bottom', bar], { opacity: 0 });
+    gsap.set('.loader-bottom', { opacity: 0 });
     if (bar) bar.style.width = '0%';
 
     const letterTl = gsap.timeline({ defaults: { ease: 'power4.out' } });
