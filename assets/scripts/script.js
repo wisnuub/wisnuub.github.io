@@ -63,6 +63,8 @@ function initLoader() {
 
         if (!exiting && done && minMet && pct >= 99) {
             exiting = true;
+            if (bar)   bar.style.width   = '100%';
+            if (numEl) numEl.textContent = '100';
             exitLoader();
         } else {
             requestAnimationFrame(tick);
