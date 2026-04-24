@@ -1,0 +1,21 @@
+{
+  "name": "Wisnu Adi Kurniawan - Portfolio",
+  "short_name": "Wisnu Portfolio",
+  "description": "WordPress Developer & 3D Home Design Specialist based in Bali, serving Australian clients.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#080808",
+  "theme_color": "#fd3737",
+  "icons": [
+    {
+      "src": "./assets/images/icon-192.webp",
+      "sizes": "192x192",
+      "type": "image/webp"
+    },
+    {
+      "src": "./assets/images/icon-512.webp",
+      "sizes": "512x512",
+      "type": "image/webp"
+    }
+  ]
+}

@@ -20,16 +20,6 @@ function initLoader() {
     const bar    = document.querySelector('.loader-bar');
     const numEl  = document.querySelector('.loader-num');
 
-    // Kick off prefetch of all work preview images immediately
-    const workLinks = Array.from(document.querySelectorAll('.work-item[href]'));
-    let loaded = 0;
-    const total = workLinks.length;
-    workLinks.forEach(el => {
-        const img = new Image();
-        img.onload = img.onerror = () => loaded++;
-        img.src = previewThumb(el.getAttribute('href'));
-    });
-
     // Phase 1: letter reveal (fixed ~1s)
     gsap.set('.loader-bottom', { opacity: 0 });
     if (bar) bar.style.width = '0%';
@@ -39,7 +29,7 @@ function initLoader() {
         .to(['.ll-w', '.ll-logo', '.ll-k'], { y: '0%', duration: 1.2, stagger: 0.1 }, 0)
         .to('.loader-bottom', { opacity: 1, duration: 0.4 }, 0.6);
 
-    // Phase 2: progress bar driven by actual image loading
+    // Phase 2: progress bar with fixed timing (removed image prefetching for lazy loading)
     const MIN_MS = 2500;
     const MAX_MS = 6000;
     const start  = Date.now();
@@ -48,10 +38,8 @@ function initLoader() {
 
     function tick() {
         const elapsed  = Date.now() - start;
-        const real     = total > 0 ? loaded / total : 1;
         const timeFrac = Math.min(elapsed / MAX_MS, 1);
-        // Time nudges bar up to 90% max; real progress can push past that
-        const target   = Math.min(Math.max(real, timeFrac * 0.9) * 100, 100);
+        const target   = Math.min(timeFrac * 0.9 * 100, 100);
 
         display += (target - display) * 0.06;
         const pct = Math.min(Math.round(display), 100);
@@ -59,7 +47,7 @@ function initLoader() {
         if (bar)   bar.style.width   = pct + '%';
         if (numEl) numEl.textContent = pct;
 
-        const done    = real >= 1 || elapsed >= MAX_MS;
+        const done    = elapsed >= MAX_MS;
         const minMet  = elapsed >= MIN_MS;
 
         if (!exiting && done && minMet && pct >= 99) {
@@ -219,7 +207,7 @@ function initMarquee() {
 
 // ─── Hero Text Entrance ───────────────────────────────────────────────────
 function initHero() {
-    gsap.to(['.hero-quote p', '.hero-scroll'], { opacity: 1, y: 0, duration: 1.2, delay: 0.4, ease: 'power3.out', stagger: 0.15 });
+    gsap.to(['.hero-title', '.hero-quote p', '.hero-scroll'], { opacity: 1, y: 0, duration: 1.2, delay: 0.4, ease: 'power3.out', stagger: 0.15 });
 }
 
 // ─── Hero: glitch face effect + mouse parallax ──────────────────
@@ -560,14 +548,26 @@ function initScrollAnimations() {
         y: -40, ease: 'none'
     });
 
-    // Work items: clip-path reveals bottom-up
+    // Work items: clip-path reveals bottom-up with lazy loading
     gsap.utils.toArray('.work-item').forEach((el, i) => {
         gsap.fromTo(el,
             { clipPath: 'inset(0 0 100% 0)', opacity: 0 },
             {
                 clipPath: 'inset(0 0 0% 0)', opacity: 1,
                 scrollTrigger: { trigger: el, start: 'top 96%' },
-                duration: 0.75, delay: i * 0.04, ease: 'expo.out'
+                duration: 0.75, delay: i * 0.04, ease: 'expo.out',
+                onComplete: () => {
+                    // Trigger lazy loading of preview image when animation completes
+                    const workItem = el;
+                    const link = workItem.querySelector('a');
+                    if (link && link.href) {
+                        const previewImg = workItem.querySelector('.work-preview');
+                        if (previewImg) {
+                            const imgUrl = link.dataset.img || previewThumb(link.href);
+                            previewImg.style.backgroundImage = `url('${imgUrl}')`;
+                        }
+                    }
+                }
             }
         );
     });
