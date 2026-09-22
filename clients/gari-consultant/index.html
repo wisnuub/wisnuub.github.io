@@ -177,8 +177,8 @@ footer {
 </div>
 
 <div class="tally">
-	<div><span class="n g">18</span><span class="l">Done</span></div>
-	<div><span class="n a">10</span><span class="l">Partly done or waiting</span></div>
+	<div><span class="n g">19</span><span class="l">Done</span></div>
+	<div><span class="n a">9</span><span class="l">Partly done or waiting</span></div>
 	<div><span class="n r">7</span><span class="l">Needs a redesign</span></div>
 </div>
 <p class="tally-note">The review numbers its points 1 to 36 but has no point 34, so there are 35 in total.</p>
@@ -234,7 +234,7 @@ footer {
 </section>
 
 <section>
-	<h2>Done and live <span class="count">18 POINTS</span></h2>
+	<h2>Done and live <span class="count">19 POINTS</span></h2>
 	<p class="lede">All of these are on the site now and can be checked.</p>
 
 	<div class="ledger">
@@ -265,6 +265,10 @@ footer {
 		<div class="row"><div class="num">9</div><div>
 			<p class="what">Service areas renamed and numbered</p>
 			<p class="detail">The four areas use your names and are numbered 01 to 04, with the number above each title so the cards line up. New line icons have been added, white on the dark homepage section and black on What We Do.</p>
+		</div></div>
+		<div class="row"><div class="num">10</div><div>
+			<p class="what">Images and photography</p>
+			<p class="detail">Every image now has alt text, where previously not one image on the site had any. The four service icons have been replaced with a matching line icon set, white on the dark home page section and black on What We Do, and the cards use the same corner radius.</p>
 		</div></div>
 		<div class="row"><div class="num">13</div><div>
 			<p class="what">GARI values numbered</p>
@@ -314,15 +318,10 @@ footer {
 </section>
 
 <section>
-	<h2>Partly done <span class="count">4 POINTS</span></h2>
+	<h2>Partly done <span class="count">3 POINTS</span></h2>
 	<p class="lede">The part we can do is finished. The rest needs a decision or new assets.</p>
 
 	<div class="ledger">
-		<div class="row"><div class="num">10</div><div>
-			<p class="what">Images and photography</p>
-			<p class="detail">Every image now has alt text, and the four service icons have been replaced with a matching line icon set.</p>
-			<p class="detail">Still to do: one icon, for Technology and Digital Transformation, is the weakest match of the four. A technology themed icon in the same line style would finish the set.</p>
-		</div></div>
 		<div class="row"><div class="num">23</div><div>
 			<p class="what">Learning platform</p>
 			<p class="detail">The buttons now say Explore Courses, Login and Register, and they open in a new tab. We still need a short description of what a visitor gets after they sign up.</p>
@@ -411,29 +410,6 @@ footer {
 			<p class="what">Old web address kept working</p>
 			<p class="detail">A redirect was added so the retired /package/ address does not show an error for anyone with an old link.</p>
 		</div></div>
-	</div>
-</section>
-
-<section>
-	<h2>A note on site speed</h2>
-	<p class="lede">Not raised in the review, but worth knowing before the meeting.</p>
-	<div class="callout">
-		<h3>The cause looks like hosting, not the website</h3>
-		<p>The clearest single measurement: the site's stylesheet is 3.7 KB and takes 5.6 seconds to start arriving. A file that small never touches WordPress, the database or any plugin, so no amount of optimisation, caching or image compression will improve that number.</p>
-		<div class="tbl-scroll">
-		<table>
-			<thead><tr><th>Resource</th><th>Size</th><th>Time to first byte</th><th>Total</th></tr></thead>
-			<tbody>
-				<tr><td>Stylesheet</td><td class="n">3.7 KB</td><td class="n bad">5.57 s</td><td class="n">5.58 s</td></tr>
-				<tr><td>Home page</td><td class="n">136 KB</td><td class="n">2.31 s</td><td class="n">13.0 s</td></tr>
-				<tr><td>What We Do</td><td class="n">130 KB</td><td class="n">4.31 s</td><td class="n">17.5 s</td></tr>
-				<tr><td>Contact</td><td class="n">163 KB</td><td class="n">2.58 s</td><td class="n">26.8 s</td></tr>
-				<tr><td>Hero background video</td><td class="n">11.6 MB</td><td class="n">5.25 s</td><td class="n bad">timed out at 60 s</td></tr>
-			</tbody>
-		</table>
-		</div>
-		<p>Total page weight is normal, roughly 1.5 MB across 41 files. The measured transfer rate was about 19 KB per second, which is the real problem.</p>
-		<p>There is still useful work on our side. The home page plays an 11.6 MB background video, and the media library holds three photographs at 6016 by 4016 pixels, around 4 MB each. That work is worth doing, but it is a small gain on top of a hosting limit, so we should not present it to the committee as a fix for the speed itself.</p>
 	</div>
 </section>
 
