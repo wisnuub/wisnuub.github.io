@@ -1,0 +1,448 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>GARI Review Status</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+:root {
+	--paper:#FBFCFD; --surface:#FFFFFF; --surface-2:#F2F5F8;
+	--ink:#11202E; --ink-2:#3D4F60; --ink-3:#6B7C8C;
+	--rule:#DCE3EA; --rule-soft:#E9EEF3;
+	--green:#43781F; --amber:#96600A; --red:#B03A2E; --accent:#6FAC39;
+	--f-display:"Newsreader","Iowan Old Style",Georgia,serif;
+	--f-body:"Public Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+	--f-mono:"IBM Plex Mono",ui-monospace,"SF Mono",Menlo,monospace;
+}
+@media (prefers-color-scheme: dark) {
+	:root:not([data-theme="light"]) {
+		--paper:#0C1620; --surface:#121F2B; --surface-2:#182835;
+		--ink:#E8EFF5; --ink-2:#B2C2D0; --ink-3:#8296A7;
+		--rule:#24384A; --rule-soft:#1C2D3C;
+		--green:#9ED26F; --amber:#E0B063; --red:#E8877B; --accent:#8CC65A;
+	}
+}
+:root[data-theme="dark"] {
+	--paper:#0C1620; --surface:#121F2B; --surface-2:#182835;
+	--ink:#E8EFF5; --ink-2:#B2C2D0; --ink-3:#8296A7;
+	--rule:#24384A; --rule-soft:#1C2D3C;
+	--green:#9ED26F; --amber:#E0B063; --red:#E8877B; --accent:#8CC65A;
+}
+* { box-sizing:border-box; }
+body {
+	margin:0; background:var(--paper); color:var(--ink);
+	font-family:var(--f-body); font-size:16px; line-height:1.65;
+	-webkit-font-smoothing:antialiased;
+}
+.wrap { max-width:940px; margin:0 auto; padding:52px 24px 90px; }
+
+.masthead { border-bottom:2px solid var(--ink); padding-bottom:20px; }
+.eyebrow {
+	font-family:var(--f-mono); font-size:11px; font-weight:500;
+	letter-spacing:.18em; text-transform:uppercase; color:var(--ink-3); margin:0 0 12px;
+}
+h1 {
+	font-family:var(--f-display); font-weight:500;
+	font-size:clamp(2rem,1.45rem+2.2vw,2.9rem); line-height:1.1;
+	letter-spacing:-.015em; margin:0 0 12px; text-wrap:balance;
+}
+.standfirst { font-size:1.0625rem; color:var(--ink-2); max-width:62ch; margin:0; }
+.meta {
+	display:flex; flex-wrap:wrap; gap:8px 22px; margin-top:18px;
+	font-family:var(--f-mono); font-size:11.5px; color:var(--ink-3);
+}
+.meta b { color:var(--ink-2); font-weight:500; }
+
+.dl {
+	display:flex; flex-wrap:wrap; align-items:center; gap:14px;
+	background:var(--surface); border:1px solid var(--rule);
+	border-left:3px solid var(--accent); padding:18px 22px; margin:26px 0 8px;
+}
+.dl a {
+	font-weight:600; color:var(--ink); text-decoration:none;
+	border-bottom:2px solid var(--accent); padding-bottom:1px;
+}
+.dl a:hover { color:var(--accent); }
+.dl span { font-size:13.5px; color:var(--ink-3); }
+
+.tally {
+	display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+	gap:1px; background:var(--rule); border:1px solid var(--rule); margin:24px 0 8px;
+}
+.tally div { background:var(--surface); padding:17px 20px; }
+.tally .n {
+	font-family:var(--f-display); font-size:2.2rem; line-height:1; font-weight:500;
+	font-variant-numeric:tabular-nums; display:block; margin-bottom:6px;
+}
+.tally .l {
+	font-family:var(--f-mono); font-size:10.5px; letter-spacing:.13em;
+	text-transform:uppercase; color:var(--ink-3);
+}
+.g { color:var(--green); } .a { color:var(--amber); } .r { color:var(--red); }
+.tally-note { font-size:13.5px; color:var(--ink-3); margin:0; }
+
+section { margin-top:48px; }
+h2 {
+	font-family:var(--f-display); font-weight:500; font-size:1.55rem;
+	letter-spacing:-.01em; margin:0 0 6px;
+	display:flex; align-items:baseline; gap:12px; flex-wrap:wrap;
+}
+h2 .count {
+	font-family:var(--f-mono); font-size:11px; font-weight:500; letter-spacing:.1em;
+	color:var(--ink-3); border:1px solid var(--rule); border-radius:2px; padding:3px 8px;
+}
+.lede { color:var(--ink-2); margin:0 0 20px; max-width:66ch; font-size:15px; }
+
+.ledger { border-top:1px solid var(--ink); }
+.row {
+	display:grid; grid-template-columns:44px 1fr; gap:0 16px;
+	padding:14px 0; border-bottom:1px solid var(--rule-soft); align-items:start;
+}
+.row .num {
+	font-family:var(--f-mono); font-size:12px; font-weight:600;
+	color:var(--ink-3); font-variant-numeric:tabular-nums; padding-top:3px;
+}
+.row .what { font-weight:600; font-size:15.5px; margin:0 0 3px; letter-spacing:-.005em; }
+.row .detail { margin:0; font-size:14.5px; color:var(--ink-2); max-width:72ch; }
+.row .detail + .detail { margin-top:6px; }
+.row code {
+	font-family:var(--f-mono); font-size:.86em; background:var(--surface-2);
+	padding:1px 5px; border-radius:3px; color:var(--ink);
+}
+.ask {
+	margin:7px 0 0; font-size:13.5px; color:var(--amber); font-weight:500;
+	padding-left:12px; border-left:2px solid var(--amber);
+}
+.fix {
+	margin:7px 0 0; font-size:13.5px; color:var(--green); font-weight:500;
+	padding-left:12px; border-left:2px solid var(--green);
+}
+.hrs {
+	font-family:var(--f-mono); font-size:11.5px; color:var(--red);
+	border:1px solid var(--rule); border-radius:2px; padding:2px 7px;
+	margin-left:8px; white-space:nowrap;
+}
+
+.callout {
+	background:var(--surface); border:1px solid var(--rule);
+	border-left:3px solid var(--accent); padding:22px 24px; margin-top:12px;
+}
+.callout h3 { font-family:var(--f-body); font-size:15px; font-weight:700; margin:0 0 10px; }
+.callout p { margin:0 0 12px; font-size:14.5px; color:var(--ink-2); max-width:70ch; }
+.callout p:last-child { margin-bottom:0; }
+
+.tbl-scroll { overflow-x:auto; margin:14px 0; }
+table { border-collapse:collapse; width:100%; font-size:14px; min-width:460px; }
+th, td { text-align:left; padding:9px 14px 9px 0; border-bottom:1px solid var(--rule-soft); }
+th {
+	font-family:var(--f-mono); font-size:10.5px; letter-spacing:.12em;
+	text-transform:uppercase; color:var(--ink-3); font-weight:500;
+	border-bottom:1px solid var(--rule);
+}
+td.n { font-family:var(--f-mono); font-variant-numeric:tabular-nums; white-space:nowrap; }
+td.tot { font-weight:700; color:var(--ink); border-top:1px solid var(--rule); }
+.bad { color:var(--amber); font-weight:600; }
+
+footer {
+	margin-top:56px; padding-top:18px; border-top:1px solid var(--rule);
+	font-size:13px; color:var(--ink-3);
+}
+@media (max-width:560px) {
+	.wrap { padding:34px 16px 60px; }
+	.row { grid-template-columns:32px 1fr; gap:0 10px; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="masthead">
+	<p class="eyebrow">Website Review &middot; Version 2 &middot; Developer Response</p>
+	<h1>GARI Website Review: Where Each Point Stands</h1>
+	<p class="standfirst">A reply to each of the 35 numbered points in the committee's review. It shows what is finished, what is partly done, what we still need from GARI, and what sits outside this round of work.</p>
+	<div class="meta">
+		<span><b>Site</b> gariconsultants.com</span>
+		<span><b>Platform</b> WordPress with Divi 5.11.1</span>
+		<span><b>Date</b> 22 September 2026</span>
+	</div>
+</header>
+
+<div class="dl">
+	<a href="GARI-Website-Review-Developer-Response.docx" download>Download the marked up review document</a>
+	<span>Word file, 215 KB. The committee's original document with a coloured status note under every point.</span>
+</div>
+
+<div class="tally">
+	<div><span class="n g">18</span><span class="l">Done</span></div>
+	<div><span class="n a">10</span><span class="l">Partly done or waiting</span></div>
+	<div><span class="n r">7</span><span class="l">Needs a redesign</span></div>
+</div>
+<p class="tally-note">The review numbers its points 1 to 36 but has no point 34, so there are 35 in total.</p>
+
+<section>
+	<h2>What we need from GARI <span class="count">4 ITEMS</span></h2>
+	<p class="lede">We checked the live site and the media library before writing this list, so it only includes things that genuinely are not there. Everything else we have handled ourselves.</p>
+
+	<div class="ledger">
+		<div class="row"><div class="num">15</div><div>
+			<p class="what">One replacement photo</p>
+			<p class="detail">Three of the four director photos are already on the About page and are square, so they sit correctly in the round frame. The photo of Dr Julia Ugorji is landscape at 937 by 467 pixels, so it crops badly in the same frame.</p>
+			<p class="ask">We need one square photo of Dr Ugorji, ideally on a similar background to the other three.</p>
+		</div></div>
+
+		<div class="row"><div class="num">19</div><div>
+			<p class="what">Social media links</p>
+			<p class="detail">The four social icons in the footer have no web address set, so they do nothing when clicked, on every page. We searched the whole site and no social links are stored anywhere, so we cannot fill them in ourselves.</p>
+			<p class="ask">We need the links for the accounts GARI actually uses. We will remove any icon for an account that does not exist.</p>
+		</div></div>
+
+		<div class="row"><div class="num">26</div><div>
+			<p class="what">Impact figures</p>
+			<p class="detail">The review asks for leaders trained, organisations supported, countries reached and programs delivered, but gives each as a letter X. There are no figures recorded anywhere on the site.</p>
+			<p class="ask">We need the four real numbers. Your review says to use verified GARI data only, and we agree, so we would rather publish nothing than placeholder figures.</p>
+		</div></div>
+
+		<div class="row"><div class="num">27</div><div>
+			<p class="what">Partner logos and testimonials</p>
+			<p class="detail">There are no partner logos or testimonials stored anywhere on the site.</p>
+			<p class="ask">We need approved logos and approved quotes with names.</p>
+		</div></div>
+	</div>
+</section>
+
+<section>
+	<h2>What we can do without asking GARI <span class="count">2 ITEMS</span></h2>
+	<p class="lede">These two were on our earlier list as blocked. On checking, they are not.</p>
+
+	<div class="ledger">
+		<div class="row"><div class="num">25</div><div>
+			<p class="what">Why GARI section</p>
+			<p class="detail">No differentiator copy exists yet. Rather than ask GARI to write it from scratch, we can draft four points from the existing About page content and the director biographies, then send them over for approval or correction.</p>
+			<p class="fix">We just need a yes to go ahead and draft it.</p>
+		</div></div>
+
+		<div class="row"><div class="num">12</div><div>
+			<p class="what">Vision, Mission and Purpose as cards</p>
+			<p class="detail">This does not need a redesign. The three blocks are already separate on the page, so card styling can be added on its own.</p>
+			<p class="fix">Rough estimate 2 hours. Icons would need to come from GARI if you want them.</p>
+		</div></div>
+	</div>
+</section>
+
+<section>
+	<h2>Done and live <span class="count">18 POINTS</span></h2>
+	<p class="lede">All of these are on the site now and can be checked.</p>
+
+	<div class="ledger">
+		<div class="row"><div class="num">21</div><div>
+			<p class="what">Privacy Policy replaced</p>
+			<p class="detail">Your document is published in full, all 34 sections. Every piece of the old placeholder wording is gone, including the "Suggested text" lines.</p>
+		</div></div>
+		<div class="row"><div class="num">22</div><div>
+			<p class="what">Terms and Conditions replaced</p>
+			<p class="detail">Your document is published in full, all 52 sections. We also added the Refund and Cancellation Policy as a new page and linked all three in the footer.</p>
+		</div></div>
+		<div class="row"><div class="num">16</div><div>
+			<p class="what">"Packages" renamed</p>
+			<p class="detail">The page is now What We Do everywhere, including the web address. The old address redirects automatically, so existing links still work.</p>
+		</div></div>
+		<div class="row"><div class="num">5</div><div>
+			<p class="what">Header and navigation</p>
+			<p class="detail">The menu is now Home, About GARI, What We Do, Contact and Login. The header button says Explore Courses instead of Signup.</p>
+		</div></div>
+		<div class="row"><div class="num">6</div><div>
+			<p class="what">Homepage hero rebuilt</p>
+			<p class="detail">New headline, new supporting sentence, and the two buttons you asked for. Sign Up Now is no longer the first thing a visitor is asked to do.</p>
+		</div></div>
+		<div class="row"><div class="num">8</div><div>
+			<p class="what">Repeated line removed</p>
+			<p class="detail">That section now reads What Working With GARI Delivers instead of repeating the headline.</p>
+		</div></div>
+		<div class="row"><div class="num">9</div><div>
+			<p class="what">Service areas renamed and numbered</p>
+			<p class="detail">The four areas use your names and are numbered 01 to 04, with the number above each title so the cards line up. New line icons have been added, white on the dark homepage section and black on What We Do.</p>
+		</div></div>
+		<div class="row"><div class="num">13</div><div>
+			<p class="what">GARI values numbered</p>
+			<p class="detail">The four values are now numbered 01 to 04 and set to a matching size.</p>
+		</div></div>
+		<div class="row"><div class="num">17</div><div>
+			<p class="what">Services page heading</p>
+			<p class="detail">The old heading is gone, replaced with Our Services and Practical Governance, Leadership, Learning and Transformation Solutions.</p>
+		</div></div>
+		<div class="row"><div class="num">18</div><div>
+			<p class="what">Contact form expanded</p>
+			<p class="detail">The form now has all six fields and the Area of Interest dropdown with your eight options. The button says Send Enquiry. Physical address was skipped as you asked.</p>
+		</div></div>
+		<div class="row"><div class="num">20</div><div>
+			<p class="what">Footer rebuilt</p>
+			<p class="detail">Four columns as requested, the correct copyright line, and all three policies linked.</p>
+		</div></div>
+		<div class="row"><div class="num">28</div><div>
+			<p class="what">SEO</p>
+			<p class="detail">Every page now has its own title, description, social preview and web address, plus a sitemap. The site title was showing as "Gari Consultants" with a stray divider on every page, which is fixed.</p>
+		</div></div>
+		<div class="row"><div class="num">2</div><div>
+			<p class="what">Brand colours</p>
+			<p class="detail">The site now uses deep navy, the green from the GARI logo, white and light grey. It was previously using blue, purple, peach, lime, red and yellow at the same time.</p>
+		</div></div>
+		<div class="row"><div class="num">3</div><div>
+			<p class="what">Typography</p>
+			<p class="detail">One set of heading and body sizes now applies across desktop, tablet and mobile. Body text was 14px and is now 17px. We also fixed a long paragraph on the home page that had been set up as a heading.</p>
+		</div></div>
+		<div class="row"><div class="num">30</div><div>
+			<p class="what">Buttons</p>
+			<p class="detail">One button style across the site, with clear labels such as Explore Our Programs, Work With GARI and Send Enquiry.</p>
+		</div></div>
+		<div class="row"><div class="num">31</div><div>
+			<p class="what">Australian English</p>
+			<p class="detail">The site now uses Australian English throughout. Note that your three policy documents use "programme" and the rest of the site uses "program". We have left your documents exactly as written and will only change them if you ask.</p>
+		</div></div>
+		<div class="row"><div class="num">33</div><div>
+			<p class="what">Animation</p>
+			<p class="detail">The header animation was set to 2 seconds, which made the whole site feel slow. It is now 0.3 seconds, and the site respects the reduce motion setting on a visitor's device.</p>
+		</div></div>
+		<div class="row"><div class="num">35</div><div>
+			<p class="what">Links tested</p>
+			<p class="detail">Every link on all seven pages works, apart from the four social icons covered in point 19.</p>
+		</div></div>
+	</div>
+</section>
+
+<section>
+	<h2>Partly done <span class="count">4 POINTS</span></h2>
+	<p class="lede">The part we can do is finished. The rest needs a decision or new assets.</p>
+
+	<div class="ledger">
+		<div class="row"><div class="num">10</div><div>
+			<p class="what">Images and photography</p>
+			<p class="detail">Every image now has alt text, and the four service icons have been replaced with a matching line icon set.</p>
+			<p class="detail">Still to do: one icon, for Technology and Digital Transformation, is the weakest match of the four. A technology themed icon in the same line style would finish the set.</p>
+		</div></div>
+		<div class="row"><div class="num">23</div><div>
+			<p class="what">Learning platform</p>
+			<p class="detail">The buttons now say Explore Courses, Login and Register, and they open in a new tab. We still need a short description of what a visitor gets after they sign up.</p>
+		</div></div>
+		<div class="row"><div class="num">29</div><div>
+			<p class="what">Image SEO</p>
+			<p class="detail">All 22 images now have alt text. Not one image had any before. Renaming the image files means re-uploading each one and updating every reference, so we suggest leaving that.</p>
+		</div></div>
+		<div class="row"><div class="num">4</div><div>
+			<p class="what">Spacing and alignment</p>
+			<p class="detail">Text spacing and sizing are now consistent. Applying one spacing system to every section means adjusting each page layout.</p>
+			<p class="detail">Rough estimate 1 to 2 hours.</p>
+		</div></div>
+	</div>
+</section>
+
+<section>
+	<h2>Needs a redesign <span class="count">7 POINTS</span></h2>
+	<p class="lede">These describe a redesign rather than changes to the current site, so they sit outside this round. All hours below are rough estimates for planning, not a quote.</p>
+
+	<div class="ledger">
+		<div class="row"><div class="num">1</div><div>
+			<p class="what">Full theme applied to every page <span class="hrs">2 hours</span></p>
+			<p class="detail">We have already done the two parts that lift quality the most, the colour palette and the text sizing. The rest is applying it consistently everywhere.</p>
+		</div></div>
+		<div class="row"><div class="num">7</div><div>
+			<p class="what">Homepage restructured into ten sections <span class="hrs">30 mins to 1 hour</span></p>
+			<p class="detail">Four of the ten sections need content that does not exist yet: Why GARI, Impact, Leadership and the Learning Platform introduction. The timing depends on that content arriving.</p>
+		</div></div>
+		<div class="row"><div class="num">11</div><div>
+			<p class="what">About page rebuilt into cards <span class="hrs">1 to 2 hours</span></p>
+			<p class="detail">Re-presenting the existing content as cards and visual sections.</p>
+		</div></div>
+		<div class="row"><div class="num">14</div><div>
+			<p class="what">Leadership profile cards <span class="hrs">30 mins to 1 hour</span></p>
+			<p class="detail">The photographs are already in place, so this is only restructuring the biographies into cards with expandable detail.</p>
+		</div></div>
+		<div class="row"><div class="num">24</div><div>
+			<p class="what">Visitor pathway routes <span class="hrs">1 hour</span></p>
+			<p class="detail">Each pathway needs its own page to link to, and those pages do not exist yet, so add time for the new pages.</p>
+		</div></div>
+		<div class="row"><div class="num">32</div><div>
+			<p class="what">Sitewide grid <span class="hrs">1 to 2 hours</span></p>
+			<p class="detail">Setting one content width and aligning everything to a shared grid. To be confirmed once we look at each page.</p>
+		</div></div>
+		<div class="row"><div class="num">36</div><div>
+			<p class="what">Final design direction <span class="hrs">no extra cost</span></p>
+			<p class="detail">This is the summary of points 1 and 7 rather than a separate task, so the hours above cover it.</p>
+		</div></div>
+	</div>
+
+	<div class="tbl-scroll">
+	<table>
+		<thead><tr><th>Point</th><th>Work</th><th>Rough estimate</th></tr></thead>
+		<tbody>
+			<tr><td class="n">1</td><td>Full theme applied to every page</td><td class="n">2 hours</td></tr>
+			<tr><td class="n">7</td><td>Homepage restructured into ten sections</td><td class="n">30 mins to 1 hour</td></tr>
+			<tr><td class="n">11</td><td>About page rebuilt into cards</td><td class="n">1 to 2 hours</td></tr>
+			<tr><td class="n">14</td><td>Leadership profile cards</td><td class="n">30 mins to 1 hour</td></tr>
+			<tr><td class="n">24</td><td>Visitor pathway routes</td><td class="n">1 hour</td></tr>
+			<tr><td class="n">32</td><td>Sitewide grid</td><td class="n">1 to 2 hours</td></tr>
+			<tr><td class="n">36</td><td>Summary of 1 and 7</td><td class="n">no extra cost</td></tr>
+			<tr><td class="n tot">&nbsp;</td><td class="tot">Total</td><td class="n tot">roughly 6 to 9 hours</td></tr>
+		</tbody>
+	</table>
+	</div>
+</section>
+
+<section>
+	<h2>Also fixed</h2>
+	<p class="lede">Found while working and fixed, though not raised in the review.</p>
+	<div class="ledger">
+		<div class="row"><div class="num">01</div><div>
+			<p class="what">Broken page title on every page</p>
+			<p class="detail">The site title showed as "Gari Consultants" followed by a stray divider with nothing after it, visible in browser tabs and search results.</p>
+		</div></div>
+		<div class="row"><div class="num">02</div><div>
+			<p class="what">No alt text anywhere</p>
+			<p class="detail">Not one image on the site had alt text. This affects accessibility as much as search results.</p>
+		</div></div>
+		<div class="row"><div class="num">03</div><div>
+			<p class="what">Wrong heading structure</p>
+			<p class="detail">A long paragraph on the home page had been set up as a heading, which search engines and screen readers both read incorrectly.</p>
+		</div></div>
+		<div class="row"><div class="num">04</div><div>
+			<p class="what">Old web address kept working</p>
+			<p class="detail">A redirect was added so the retired /package/ address does not show an error for anyone with an old link.</p>
+		</div></div>
+	</div>
+</section>
+
+<section>
+	<h2>A note on site speed</h2>
+	<p class="lede">Not raised in the review, but worth knowing before the meeting.</p>
+	<div class="callout">
+		<h3>The cause looks like hosting, not the website</h3>
+		<p>The clearest single measurement: the site's stylesheet is 3.7 KB and takes 5.6 seconds to start arriving. A file that small never touches WordPress, the database or any plugin, so no amount of optimisation, caching or image compression will improve that number.</p>
+		<div class="tbl-scroll">
+		<table>
+			<thead><tr><th>Resource</th><th>Size</th><th>Time to first byte</th><th>Total</th></tr></thead>
+			<tbody>
+				<tr><td>Stylesheet</td><td class="n">3.7 KB</td><td class="n bad">5.57 s</td><td class="n">5.58 s</td></tr>
+				<tr><td>Home page</td><td class="n">136 KB</td><td class="n">2.31 s</td><td class="n">13.0 s</td></tr>
+				<tr><td>What We Do</td><td class="n">130 KB</td><td class="n">4.31 s</td><td class="n">17.5 s</td></tr>
+				<tr><td>Contact</td><td class="n">163 KB</td><td class="n">2.58 s</td><td class="n">26.8 s</td></tr>
+				<tr><td>Hero background video</td><td class="n">11.6 MB</td><td class="n">5.25 s</td><td class="n bad">timed out at 60 s</td></tr>
+			</tbody>
+		</table>
+		</div>
+		<p>Total page weight is normal, roughly 1.5 MB across 41 files. The measured transfer rate was about 19 KB per second, which is the real problem.</p>
+		<p>There is still useful work on our side. The home page plays an 11.6 MB background video, and the media library holds three photographs at 6016 by 4016 pixels, around 4 MB each. That work is worth doing, but it is a small gain on top of a hosting limit, so we should not present it to the committee as a fix for the speed itself.</p>
+	</div>
+</section>
+
+<footer>
+	Prepared 22 September 2026 for gariconsultants.com, WordPress with Divi 5.11.1.
+	Point numbers follow the committee's document "GARI Consultants Website, Version 2" dated 9 September 2026.
+	This page is a working summary and is not linked from anywhere public.
+</footer>
+
+</div>
+</body>
+</html>
