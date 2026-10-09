@@ -1,21 +1,30 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-loader="always">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Wisnu Adi Kurniawan — WordPress Developer & 3D Home Design Specialist based in Bali. Creating premium digital experiences for Australian clients.">
-    <meta name="keywords" content="WordPress developer, 3D home design, web developer, Bali, Australia, Wisnu Kurniawan, portfolio">
+    <title>Wisnu Adi Kurniawan — Web developer & plugin maker</title>
+    <meta name="description" content="Wisnu Adi Kurniawan builds WordPress, WooCommerce and headless websites, and makes WordPress plugins like Bundle Builder for WooCommerce. Based in Bali, working with clients in Australia and beyond.">
     <meta name="author" content="Wisnu Adi Kurniawan">
-    <meta property="og:title" content="Wisnu Adi Kurniawan — WordPress & 3D Design">
-    <meta property="og:description" content="WordPress Developer & 3D Home Design Specialist based in Bali, serving Australian clients.">
+    <meta name="theme-color" content="#0a0a0b">
+    <meta property="og:title" content="Wisnu Adi Kurniawan — Web developer & plugin maker">
+    <meta property="og:description" content="WordPress, WooCommerce and headless websites, and WordPress plugins. Based in Bali.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://wisnuub.github.io/">
-    <title>Wisnu Adi Kurniawan</title>
+    <meta property="og:image" content="https://wisnuub.github.io/assets/images/hero.jpg">
+    <link rel="canonical" href="https://wisnuub.github.io/">
     <link rel="icon" href="./assets/images/icon.webp">
-    <link rel="stylesheet" href="./assets/scripts/style.css">
     <link rel="manifest" href="./manifest.json">
-    <!-- JSON-LD Structured Data -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300..600&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap">
+    <link rel="stylesheet" href="./assets/scripts/style.css?v=21">
+    <script>
+    // The homepage (and the first page of a session) gets the W·A·K loader;
+    // every other page washes in.
+    (function (h) { var v = false; try { v = !!sessionStorage.getItem('wk-visited'); } catch (e) {} var f = h.dataset.loader === 'always' || !v; h.classList.add(f ? 'is-first' : 'is-return'); if (f && v) h.classList.add('is-fade'); })(document.documentElement);
+    </script>
+    <link rel="preload" as="image" href="./assets/images/hero-1920.webp">
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -28,355 +37,282 @@
         "https://www.instagram.com/to_arts/",
         "https://github.com/wisnuub"
       ],
-      "jobTitle": "WordPress Developer & 3D Home Design Specialist",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Kuta, Bali",
-        "addressCountry": "ID"
-      },
-      "description": "WordPress Developer & 3D Home Design Specialist based in Bali, serving Australian clients.",
-      "skills": ["Web Development", "3D Home Design", "Full Stack Development", "Graphic Design"]
+      "jobTitle": "Web Developer & WordPress Plugin Maker",
+      "address": { "@type": "PostalAddress", "addressLocality": "Kuta, Bali", "addressCountry": "ID" },
+      "description": "WordPress, WooCommerce and headless websites, and WordPress plugins. Based in Bali, working with clients in Australia and beyond."
     }
     </script>
 </head>
-<body class="is-loading">
-    <!-- Skip to Content Link -->
-    
-
-    <!-- Fallback content for when JavaScript is disabled -->
-    <noscript>
-        <div class="noscript-warning">
-            <p>Please enable JavaScript to fully experience this website.</p>
-            <p>Some features and animations will not work without JavaScript enabled.</p>
+<body class="is-intro">
+    <div class="loader" aria-hidden="true">
+        <div class="loader__mark">
+            <span class="loader__l"><span>W</span></span><span class="loader__l loader__a"><img class="loader__base" src="./assets/images/icon-a.webp" alt=""><img class="loader__fill" src="./assets/images/icon-a.webp" alt=""></span><span class="loader__l"><span>K</span></span>
         </div>
-    </noscript>
-
-    <!-- ─── DevTools Guard ──────────────────────────────────────── -->
-    <div id="dt-guard" aria-hidden="true">
-        <span id="dt-shrug">¯\_(ツ)_/¯</span>
-        <p id="dt-msg">Congrats, you've located the secret menu.<br>Now go outside and touch grass.</p>
+        <span class="loader__label mono">Wisnu Adi Kurniawan</span>
+        <span class="loader__num mono">000</span>
+        <div class="loader__bar"><i></i></div>
     </div>
+    <div class="wash" aria-hidden="true"><div class="wash__panel"></div></div>
 
-    <!-- ─── Loader ─────────────────────────────────────────────── -->
-    <div id="loader" aria-hidden="true">
-        <div class="loader-letters">
-            <div class="ll-wrap">
-                <span class="ll ll-w">W</span>
-            </div>
-            <div class="ll-wrap ll-mid">
-                <img class="ll ll-logo" src="./assets/images/toast.webp" alt="">
-            </div>
-            <div class="ll-wrap">
-                <span class="ll ll-k">K</span>
-            </div>
-        </div>
-        <div class="loader-bottom">
-            <div class="loader-track">
-                <div class="loader-bar"></div>
-            </div>
-            <span class="loader-num">0</span>
-        </div>
-    </div>
+    <div class="cursor" aria-hidden="true"><span class="cursor__ring"><span class="cursor__label"></span></span><span class="cursor__dot"></span></div>
+    <div class="preview" aria-hidden="true"><div class="preview__img"></div></div>
 
-    <!-- ─── Cursor ─────────────────────────────────────────────── -->
-    <div class="cursor-dot" aria-hidden="true"></div>
-    <div class="cursor-ring" aria-hidden="true"></div>
-
-    <!-- ─── Nav ───────────────────────────────────────────────── -->
-    <nav class="nav" id="nav" role="navigation" aria-label="Main navigation">
-        <a class="nav-logo" href="/" aria-label="Home">
-            <img src="./assets/images/toast.webp" alt="Wisnu Kurniawan">
-        </a>
-        <ul class="nav-links">
-            <li><a href="#about">About</a></li>
-            <li><a href="#services">Services</a></li>
-            <li><a href="#works">Works</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-        <div class="nav-socials">
-            <a href="https://www.linkedin.com/in/wisnoob/" target="_blank" rel="noopener noreferrer">Li</a>
-            <a href="https://www.instagram.com/wisnoob/" target="_blank" rel="noopener noreferrer">Ig</a>
-            <a href="https://www.instagram.com/to_arts/" target="_blank" rel="noopener noreferrer">Art</a>
-            <a href="https://github.com/wisnuub" target="_blank" rel="noopener noreferrer">Gh</a>
-            <a href="https://api.whatsapp.com/send?phone=6281558911373" target="_blank" rel="noopener noreferrer">Wa</a>
-        </div>
-    </nav>
-
-    <!-- ─── Hero ──────────────────────────────────────────────── -->
-    <section class="hero" id="hero" aria-label="Hero">
-
-        <!-- Tearing face background -->
-        <canvas id="tear-canvas" aria-hidden="true"></canvas>
-
-        <!-- Film grain overlay -->
-        <div class="grain-overlay" aria-hidden="true"></div>
-
-        <!-- Dark gradient for text readability -->
-        <div class="hero-overlay" aria-hidden="true"></div>
-
-        <!-- Content -->
-        <div class="hero-bottom">
-            <h1 class="hero-title">Wisnu Adi Kurniawan</h1>
-            <div class="hero-quote">
-                <p>No less. Just more.<br>Let karma handle the rest.</p>
-            </div>
-            <div class="hero-scroll" aria-hidden="true">
-                <span class="scroll-line"></span>
-                <span class="scroll-label">Scroll</span>
-            </div>
-        </div>
-
-    </section>
-
-    <!-- ─── Marquee ─────────────────────────────────────────────── -->
-    <div class="marquee-strip" aria-hidden="true">
-        <div class="marquee-track">
-            <span>Web Development</span><span class="ms-sep">·</span>
-            <span>3D Home Design</span><span class="ms-sep">·</span>
-            <span>Full Stack</span><span class="ms-sep">·</span>
-            <span>Graphic Design</span><span class="ms-sep">·</span>
-            <span>Web Development</span><span class="ms-sep">·</span>
-            <span>3D Home Design</span><span class="ms-sep">·</span>
-            <span>Full Stack</span><span class="ms-sep">·</span>
-            <span>Graphic Design</span><span class="ms-sep">·</span>
-        </div>
-    </div>
-
-    <!-- ─── About ─────────────────────────────────────────────── -->
-    <section class="section" id="about" aria-label="About">
-
-        <div class="about-heading-wrap">
-            <h2 class="about-heading">
-                <span class="ah-line">Crafting digital</span>
-                <span class="ah-line ah-indent">experiences</span>
-                <span class="ah-line">that <em>perform.</em></span>
-            </h2>
-        </div>
-
-        <div class="about-rule"></div>
-
-        <div class="about-stats-strip">
-            <div class="ass-item">
-                <span class="ass-num count" data-target="95">0</span>
-                <span class="ass-label">IT Related</span>
-            </div>
-            <div class="ass-sep">—</div>
-            <div class="ass-item">
-                <span class="ass-num count" data-target="90">0</span>
-                <span class="ass-label">Frontend Dev</span>
-            </div>
-            <div class="ass-sep">—</div>
-            <div class="ass-item">
-                <span class="ass-num count" data-target="80">0</span>
-                <span class="ass-label">Design</span>
-            </div>
-        </div>
-
-    </section>
-
-    <!-- ─── Services ─────────────────────────────────────────── -->
-    <section class="section section-alt" id="services" aria-label="Services">
-        <h2 class="section-title">What I Bring.</h2>
-        <nav class="services-menu">
-            <a href="#contact" class="svc-item"
-                 data-img="./assets/images/vscode.webp">
-                <span class="svc-text"><span class="svc-inner">Web Development <sup>01</sup></span></span>
-            </a>
-            <a href="#contact" class="svc-item"
-                 data-img="./assets/images/3d-design.webp">
-                <span class="svc-text"><span class="svc-inner">3D Home Design <sup>02</sup></span></span>
-            </a>
-            <a href="#contact" class="svc-item"
-                 data-img="https://api.microlink.io?url=https%3A%2F%2Fbwa-tierone.com%2F&screenshot=true&meta=false&embed=screenshot.url">
-                <span class="svc-text"><span class="svc-inner">Full Stack <sup>03</sup></span></span>
-            </a>
-            <a href="#contact" class="svc-item"
-                 data-img="https://api.microlink.io?url=https%3A%2F%2Fcorplex.com.au%2F&screenshot=true&meta=false&embed=screenshot.url">
-                <span class="svc-text"><span class="svc-inner">Graphic Design <sup>04</sup></span></span>
-            </a>
-            <a href="#works" class="svc-explore">
-                Explore all Works <span class="svc-arrow">→</span>
-            </a>
+    <header class="nav" id="nav">
+        <a class="nav__logo" href="/" aria-label="Wisnu Adi Kurniawan, home"><span class="nav__logo-text"><span>W</span><span>K</span></span><sup>®</sup></a>
+        <nav class="nav__links" aria-label="Main">
+            <a href="#works">Work</a>
+            <a href="#plugins">Plugins</a>
+            <a href="#services">Services</a>
+            <a href="#contact">Contact</a>
         </nav>
-    </section>
-
-    <!-- Shared hover reveal for services -->
-    <div class="svc-reveal" id="svc-reveal" aria-hidden="true">
-        <div class="svc-reveal__inner">
-            <div class="svc-reveal__img" id="svc-reveal-img"></div>
+        <div class="nav__meta">
+            <span class="nav__status"><i></i>Available for projects</span>
+            <span class="nav__clock">Bali <time data-clock>--:--</time></span>
         </div>
-    </div>
+    </header>
 
-    <!-- ─── Marquee reverse ───────────────────────────────────── -->
-    <div class="marquee-strip reverse" aria-hidden="true">
-        <div class="marquee-track">
-            <span>Bali, Indonesia</span><span class="ms-sep">·</span>
-            <span>Serving Australia</span><span class="ms-sep">·</span>
-            <span>Remote&nbsp;First</span><span class="ms-sep">·</span>
-            <span>Available Now</span><span class="ms-sep">·</span>
-            <span>Bali, Indonesia</span><span class="ms-sep">·</span>
-            <span>Serving Australia</span><span class="ms-sep">·</span>
-            <span>Remote&nbsp;First</span><span class="ms-sep">·</span>
-            <span>Available Now</span><span class="ms-sep">·</span>
-        </div>
-    </div>
+    <main class="main" id="top">
 
-    <!-- ─── 3D Showcase ───────────────────────────────────────── -->
-    <section class="section section-3d" id="showcase" aria-label="3D Design Showcase">
-        <div class="showcase-header">
-            <h2 class="section-title">Spaces<br>Visualised.</h2>
-            <p class="showcase-hint">Move your mouse to interact</p>
-        </div>
-        <div class="canvas-3d-wrap">
-            <canvas id="three-canvas" aria-hidden="true"></canvas>
-        </div>
-    </section>
+        <!-- ─── Hero ─────────────────────────────────────────── -->
+        <section class="hero" aria-label="Introduction">
+            <canvas class="hero__waves" data-waves="portrait" aria-hidden="true"></canvas>
 
-    <!-- ─── Works ────────────────────────────────────────────── -->
-    <section class="section section-alt" id="works" aria-label="Portfolio">
-        <h2 class="section-title">Selected<br>Works.</h2>
-        <div class="works-list">
-
-            <a class="work-item" href="https://protocoffee.com.au/" target="_blank" rel="noopener noreferrer">
-                <div class="work-meta"><span class="work-num">/ 01</span><span class="work-tag">e-Commerce</span></div>
-                <h3 class="work-title">Proto Coffee</h3>
-                
-            </a>
-
-            <a class="work-item" href="https://nbn.businessict.com.au/" target="_blank" rel="noopener noreferrer">
-                <div class="work-meta"><span class="work-num">/ 02</span><span class="work-tag">IT Service</span></div>
-                <h3 class="work-title">Business ICT</h3>
-
-            </a>
-
-            <a class="work-item" href="https://timesberwick.com.au/" target="_blank" rel="noopener noreferrer">
-                <div class="work-meta"><span class="work-num">/ 03</span><span class="work-tag">Restaurant</span></div>
-                <h3 class="work-title">Times Berwick</h3>
-
-            </a>
-
-            <a class="work-item" href="https://southsidephysio.com.au/" target="_blank" rel="noopener noreferrer">
-                <div class="work-meta"><span class="work-num">/ 04</span><span class="work-tag">Healthcare</span></div>
-                <h3 class="work-title">Southside Physio</h3>
-                
-            </a>
-
-            <a class="work-item" href="https://bwa-tierone.com/" target="_blank" rel="noopener noreferrer">
-                <div class="work-meta"><span class="work-num">/ 05</span><span class="work-tag">Corporate</span></div>
-                <h3 class="work-title">BWA TierOne</h3>
-                
-            </a>
-
-            <a class="work-item" href="https://corplex.com.au/" target="_blank" rel="noopener noreferrer">
-                <div class="work-meta"><span class="work-num">/ 06</span><span class="work-tag">Corporate</span></div>
-                <h3 class="work-title">Corplex</h3>
-                
-            </a>
-
-            <a class="work-item" href="https://mnc.org.au/" target="_blank" rel="noopener noreferrer">
-                <div class="work-meta"><span class="work-num">/ 07</span><span class="work-tag">Netball Club</span></div>
-                <h3 class="work-title">MNC</h3>
-                
-            </a>
-
-            <a class="work-item" href="https://www.selectadvicefinance.com.au/" target="_blank" rel="noopener noreferrer">
-                <div class="work-meta"><span class="work-num">/ 08</span><span class="work-tag">Finance</span></div>
-                <h3 class="work-title">Select Advice Finance</h3>
-                
-            </a>
-
-            <a class="work-item" href="https://chinesemedicinemelbourne.com.au/" target="_blank" rel="noopener noreferrer">
-                <div class="work-meta"><span class="work-num">/ 09</span><span class="work-tag">Healthcare</span></div>
-                <h3 class="work-title">Chinese Medicine Melbourne</h3>
-                
-            </a>
-
-            <a class="work-item" href="https://novaluxelectrical.com.au/" target="_blank" rel="noopener noreferrer">
-                <div class="work-meta"><span class="work-num">/ 10</span><span class="work-tag">Electrical Service</span></div>
-                <h3 class="work-title">Novalux Electrical</h3>
-                
-            </a>
-
-        </div>
-    </section>
-
-    <!-- ─── Footer  (Fleava-style) ───────────────────────────── -->
-    <footer class="footer" id="contact">
-
-        <!-- Big CTA -->
-        <div class="footer-cta">
-            <a href="mailto:wisnuadi415@gmail.com" class="footer-cta-link">Let's Talk.</a>
-        </div>
-
-        <!-- Info grid -->
-        <div class="footer-grid">
-
-            <div class="footer-col">
-                <h5>Kuta</h5>
-                <address>
-                    <small>
-                        Bali, Indonesia<br>
-                        WITA &nbsp;UTC+8
-                    </small>
-                </address>
+            <div class="hero__corner hero__corner--tl mono" aria-hidden="true">
+                <span>Portfolio</span><span>&copy; 2026</span>
+            </div>
+            <div class="hero__corner hero__corner--tr mono" aria-hidden="true">
+                <span>8.72° S</span><span>115.17° E</span>
             </div>
 
-            <div class="footer-col">
-                <h5>Malang</h5>
-                <address>
-                    <small>
-                        East Java, Indonesia<br>
-                        WIB &nbsp;UTC+7
-                    </small>
-                </address>
-            </div>
-
-            <div class="footer-col">
-                <h5>Bogor</h5>
-                <address>
-                    <small>
-                        West Java, Indonesia<br>
-                        WIB &nbsp;UTC+7
-                    </small>
-                </address>
-            </div>
-
-            <div class="footer-col footer-col-nav">
-                <h5>
-                    <a href="#about">About</a>
-                    <a href="#services">Services <sup>04</sup></a>
-                    <a href="#showcase">3D Design</a>
-                    <a href="#works">Works <sup>10</sup></a>
-                    <a href="#contact">Contact</a>
-                </h5>
-            </div>
-
-            <div class="footer-col footer-col-social">
-                <div class="footer-socials-row">
-                    <a href="https://www.linkedin.com/in/wisnoob/" target="_blank" rel="noopener noreferrer">Li &nbsp;</a>
-                    <a href="https://www.instagram.com/wisnoob/" target="_blank" rel="noopener noreferrer">Ig &nbsp;</a>
-                    <a href="https://www.instagram.com/to_arts/" target="_blank" rel="noopener noreferrer">Art &nbsp;</a>
-                    <a href="https://github.com/wisnuub" target="_blank" rel="noopener noreferrer">Gh &nbsp;</a>
-                    <a href="https://api.whatsapp.com/send?phone=6281558911373" target="_blank" rel="noopener noreferrer">Wa &nbsp;</a>
+            <div class="hero__foot">
+                <h1 class="hero__title">
+                    <span class="line"><span>Wisnu Adi</span></span>
+                    <span class="line"><span><em>Kurniawan</em></span></span>
+                </h1>
+                <div class="hero__aside">
+                    <p class="hero__lede reveal">Web developer and WordPress plugin maker in Bali, building fast, considered websites for brands in Australia and beyond.</p>
+                    <a class="hero__scroll mono reveal" href="#works"><span class="hero__scroll-line"></span>Scroll</a>
                 </div>
-                <p class="footer-copy">
-                    Web Dev &nbsp;·&nbsp; 3D Design &nbsp;·&nbsp; Full Stack
-                </p>
             </div>
 
-        </div>
+        </section>
 
-        <div class="footer-bar">
-            <span>wisnuub.github.io</span>
-            <span>© <span id="footer-year">2024</span> Wisnu Adi Kurniawan</span>
-        </div>
+        <!-- ─── Work ─────────────────────────────────────────── -->
+        <section class="works" id="works" aria-label="Selected work">
+            <header class="sec-head">
+                <span class="eyebrow mono">(01) Work</span>
+                <h2 class="sec-head__title reveal">Selected<br><em>work.</em></h2>
+            </header>
+            <div class="showreel">
+                <ol class="showreel__list">
+                    <li class="showreel__item is-active" data-reel="buccheri" data-reel-host="buccheri.vercel.app">
+                        <span class="showreel__num mono">01 / 05</span>
+                        <h3 class="showreel__name"><a href="https://buccheri.vercel.app/" target="_blank" rel="noopener" data-cursor="Visit">Buccheri Group</a></h3>
+                        <span class="showreel__tag mono">Food &amp; hospitality · Next.js, Sanity</span>
+                        <p>The family behind a group of food and hospitality brands. A dot-matrix wordmark intro, a full-screen brand sequence and a page for every brand, all edited in Sanity.</p>
+                        <a class="arrow-link" href="https://buccheri.vercel.app/" target="_blank" rel="noopener">Visit buccheri.vercel.app <span aria-hidden="true">↗</span></a>
+                        <div class="showreel__inline" aria-hidden="true"><img src="./assets/images/reel/buccheri.webp" alt="" loading="lazy"></div>
+                    </li>
+                    <li class="showreel__item" data-reel="proto-coffee" data-reel-host="protocoffee.com.au">
+                        <span class="showreel__num mono">02 / 05</span>
+                        <h3 class="showreel__name"><a href="https://protocoffee.com.au/" target="_blank" rel="noopener" data-cursor="Visit">Proto Coffee</a></h3>
+                        <span class="showreel__tag mono">E-commerce · WordPress, WooCommerce</span>
+                        <p>Coffee beans, beverages, café consumables and machines, in a WooCommerce store organised around how cafés and offices actually buy.</p>
+                        <a class="arrow-link" href="https://protocoffee.com.au/" target="_blank" rel="noopener">Visit protocoffee.com.au <span aria-hidden="true">↗</span></a>
+                        <div class="showreel__inline" aria-hidden="true"><img src="./assets/images/reel/proto-coffee.webp" alt="" loading="lazy"></div>
+                    </li>
+                    <li class="showreel__item" data-reel="vive-club" data-reel-host="vive-club.vercel.app">
+                        <span class="showreel__num mono">03 / 05</span>
+                        <h3 class="showreel__name"><a href="https://vive-club.vercel.app/" target="_blank" rel="noopener" data-cursor="Visit">Vive Club</a></h3>
+                        <span class="showreel__tag mono">Fitness &amp; wellness · Next.js</span>
+                        <p>A gym, wellness and recovery club in Footscray. A fast, statically generated Next.js site with smooth scrolling, replacing their old Squarespace site.</p>
+                        <a class="arrow-link" href="https://vive-club.vercel.app/" target="_blank" rel="noopener">Visit vive-club.vercel.app <span aria-hidden="true">↗</span></a>
+                        <div class="showreel__inline" aria-hidden="true"><img src="./assets/images/reel/vive-club.webp" alt="" loading="lazy"></div>
+                    </li>
+                    <li class="showreel__item" data-reel="business-ict" data-reel-host="nbn.businessict.com.au">
+                        <span class="showreel__num mono">04 / 05</span>
+                        <h3 class="showreel__name"><a href="https://nbn.businessict.com.au/" target="_blank" rel="noopener" data-cursor="Visit">Business ICT</a></h3>
+                        <span class="showreel__tag mono">IT services · WordPress</span>
+                        <p>Business NBN and enterprise ethernet: unified data and voice, fixed-cost plans and fast internet, explained clearly for Australian businesses.</p>
+                        <a class="arrow-link" href="https://nbn.businessict.com.au/" target="_blank" rel="noopener">Visit nbn.businessict.com.au <span aria-hidden="true">↗</span></a>
+                        <div class="showreel__inline" aria-hidden="true"><img src="./assets/images/reel/business-ict.webp" alt="" loading="lazy"></div>
+                    </li>
+                    <li class="showreel__item" data-reel="chinese-medicine-melbourne" data-reel-host="chinesemedicinemelbourne.com.au">
+                        <span class="showreel__num mono">05 / 05</span>
+                        <h3 class="showreel__name"><a href="https://chinesemedicinemelbourne.com.au/" target="_blank" rel="noopener" data-cursor="Visit">Chinese Medicine Melbourne</a></h3>
+                        <span class="showreel__tag mono">Healthcare · WordPress, WooCommerce</span>
+                        <p>Quiescence Acupuncture &amp; Apothecary: practitioners, treatments and bookings for clinics in Fitzroy and Thornbury, plus an online herbal apothecary.</p>
+                        <a class="arrow-link" href="https://chinesemedicinemelbourne.com.au/" target="_blank" rel="noopener">Visit chinesemedicinemelbourne.com.au <span aria-hidden="true">↗</span></a>
+                        <div class="showreel__inline" aria-hidden="true"><img src="./assets/images/reel/chinese-medicine-melbourne.webp" alt="" loading="lazy"></div>
+                    </li>
+                </ol>
+                <div class="showreel__stage">
+                    <div class="browser">
+                        <div class="browser__bar"><i></i><i></i><i></i><span class="mono" data-reel-url>buccheri.vercel.app</span><button class="browser__live mono" type="button" data-reel-live><i></i><span>Feel it</span></button></div>
+                        <div class="browser__view browser__view--reel" data-cursor="Feel it">
+                                <div class="browser__frame" data-reel-frame></div>
+                                <div class="reel is-active" data-reel-shot="buccheri"><img src="./assets/images/reel/buccheri.webp" alt=""></div>
+                                <div class="reel" data-reel-shot="proto-coffee"><img data-src="./assets/images/reel/proto-coffee.webp" alt=""></div>
+                                <div class="reel" data-reel-shot="vive-club"><img data-src="./assets/images/reel/vive-club.webp" alt=""></div>
+                                <div class="reel" data-reel-shot="business-ict"><img data-src="./assets/images/reel/business-ict.webp" alt=""></div>
+                                <div class="reel" data-reel-shot="chinese-medicine-melbourne"><img data-src="./assets/images/reel/chinese-medicine-melbourne.webp" alt=""></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
+        <!-- ─── Manifesto ────────────────────────────────────── -->
+        <section class="manifesto" id="intro" aria-label="About">
+            <span class="eyebrow mono">(02) About</span>
+            <p class="manifesto__text" data-words>
+                I design and build websites that load fast, read clearly and are easy for my clients to run themselves. Lately I've been turning the problems I solve for clients into WordPress plugins anyone can use.
+            </p>
+            <p class="manifesto__quote reveal"><em>No less. Just more.</em> Let karma handle the rest.</p>
+        </section>
+
+        <!-- ─── Plugins ──────────────────────────────────────── -->
+        <section class="plugins" id="plugins" aria-label="Plugins">
+            <header class="sec-head">
+                <span class="eyebrow mono">(03) Plugins</span>
+                <h2 class="sec-head__title reveal">Things I make<br><em>for WordPress.</em></h2>
+            </header>
+
+            <a class="feature reveal" href="./bundle-builder/" data-cursor="Explore">
+                <div class="feature__media">
+                    <canvas class="feature__waves" data-waves="box" aria-hidden="true"></canvas>
+                    <figure class="feature__shot">
+                        <img src="./assets/images/bb/builder.webp" alt="The Bundle Builder step where shoppers fill their box, with a running summary of the box beside the products" loading="lazy" width="2222" height="1456">
+                    </figure>
+                    <figure class="feature__phone">
+                        <img src="./assets/images/bb/mobile.webp" alt="" loading="lazy" width="780" height="1688">
+                    </figure>
+                </div>
+                <div class="feature__body">
+                    <span class="pill mono"><i></i>In review on WordPress.org</span>
+                    <h3 class="feature__title">Bundle Builder <em>for WooCommerce</em></h3>
+                    <p>Let shoppers build their own gift box step by step, add a greeting card with a personal message, and check out from a slide-out mini cart.</p>
+                    <span class="arrow-link">Explore the plugin <span aria-hidden="true">→</span></span>
+                </div>
+            </a>
+
+            <ul class="plugin-list">
+                <li>
+                    <a href="https://github.com/wisnuub/media-janitor" target="_blank" rel="noopener" data-cursor="GitHub">
+                        <span class="plugin-list__name">Media Janitor</span>
+                        <span class="plugin-list__desc">Finds unused media files and shows exactly where every file is used before you delete anything.</span>
+                        <span class="plugin-list__tag mono">Free + Pro</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://github.com/wisnuub/wp-image-optimizer" target="_blank" rel="noopener" data-cursor="GitHub">
+                        <span class="plugin-list__name">Image Optimizer</span>
+                        <span class="plugin-list__desc">Converts existing images to WebP or AVIF without breaking a single link.</span>
+                        <span class="plugin-list__tag mono">Free</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://github.com/wisnuub/keyword-page-generator" target="_blank" rel="noopener" data-cursor="GitHub">
+                        <span class="plugin-list__name">Keyword Page Generator</span>
+                        <span class="plugin-list__desc">Generates keyword-specific pages from one template. Works with Gutenberg, Elementor, Divi, WPBakery and Yoast.</span>
+                        <span class="plugin-list__tag mono">Free</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://github.com/wisnuub/claude-connector" target="_blank" rel="noopener" data-cursor="GitHub">
+                        <span class="plugin-list__name">Claude Connector</span>
+                        <span class="plugin-list__desc">A secure REST bridge that lets Claude work on any WordPress site, with no hosting access needed.</span>
+                        <span class="plugin-list__tag mono">Free</span>
+                    </a>
+                </li>
+            </ul>
+        </section>
+
+        <!-- ─── Services ─────────────────────────────────────── -->
+        <section class="services" id="services" aria-label="Services">
+            <header class="sec-head">
+                <span class="eyebrow mono">(04) Services</span>
+                <h2 class="sec-head__title reveal">What I can<br><em>do for you.</em></h2>
+            </header>
+            <ol class="index-list">
+                <li class="index-list__item reveal" data-img="./assets/images/work/buccheri.webp">
+                    <span class="index-list__num mono">01</span>
+                    <span class="index-list__name" data-title>Web Development</span>
+                    <span class="index-list__desc">WordPress, WooCommerce and headless Next.js sites, built to load fast and stay easy to edit.</span>
+                </li>
+                <li class="index-list__item reveal" data-img="./assets/images/bb/builder.webp">
+                    <span class="index-list__num mono">02</span>
+                    <span class="index-list__name" data-title>Plugin Development</span>
+                    <span class="index-list__desc">Custom WordPress and WooCommerce plugins, from a single feature to a full product.</span>
+                </li>
+                <li class="index-list__item reveal" data-img="./assets/images/work/3d-design.webp">
+                    <span class="index-list__num mono">03</span>
+                    <span class="index-list__name" data-title>3D Home Design</span>
+                    <span class="index-list__desc">Floor plans turned into models and renders you can walk clients through.</span>
+                </li>
+                <li class="index-list__item reveal" data-img="./assets/images/work/custom-work.webp">
+                    <span class="index-list__num mono">04</span>
+                    <span class="index-list__name" data-title>Custom Work</span>
+                    <span class="index-list__desc">For the special occasion: digital invitations, one-off tools, dashboards and automations built around exactly what you need.</span>
+                </li>
+            </ol>
+        </section>
+
+        <!-- ─── 3D ───────────────────────────────────────────── -->
+        <section class="showcase" id="showcase" aria-label="3D design">
+            <div class="showcase__head">
+                <span class="eyebrow mono">(05) 3D</span>
+                <h2 class="sec-head__title reveal">Spaces,<br><em>visualised.</em></h2>
+                <p class="showcase__hint mono">Move to look around</p>
+            </div>
+            <canvas class="showcase__canvas" id="three-canvas" aria-hidden="true"></canvas>
+        </section>
+
+    </main>
+
+    <!-- ─── Footer (curtain) ─────────────────────────────────── -->
+    <footer class="footer" id="contact">
+        <canvas class="footer__waves" data-waves="calm" aria-hidden="true"></canvas>
+        <div class="footer__inner">
+            <span class="eyebrow mono">(06) Contact</span>
+            <a class="footer__cta" href="mailto:wisnuadi415@gmail.com" data-cursor="Email">Let's <em>talk.</em></a>
+            <div class="footer__grid">
+                <div>
+                    <h4 class="mono">Email</h4>
+                    <a href="mailto:wisnuadi415@gmail.com">wisnuadi415@gmail.com</a>
+                    <a href="https://api.whatsapp.com/send?phone=6281558911373" target="_blank" rel="noopener">WhatsApp</a>
+                </div>
+                <div>
+                    <h4 class="mono">Elsewhere</h4>
+                    <a href="https://github.com/wisnuub" target="_blank" rel="noopener">GitHub</a>
+                    <a href="https://www.linkedin.com/in/wisnoob/" target="_blank" rel="noopener">LinkedIn</a>
+                    <a href="https://www.instagram.com/wisnoob/" target="_blank" rel="noopener">Instagram</a>
+                    <a href="https://www.instagram.com/to_arts/" target="_blank" rel="noopener">Art</a>
+                </div>
+                <div>
+                    <h4 class="mono">Based in</h4>
+                    <p>Kuta, Bali <span class="mute">UTC+8</span></p>
+                    <p>Malang, East Java <span class="mute">UTC+7</span></p>
+                    <p>Bogor, West Java <span class="mute">UTC+7</span></p>
+                </div>
+                <div>
+                    <h4 class="mono">Plugins</h4>
+                    <a href="./bundle-builder/">Bundle Builder</a>
+                    <a href="https://github.com/wisnuub/media-janitor" target="_blank" rel="noopener">Media Janitor</a>
+                    <a href="https://github.com/wisnuub/wp-image-optimizer" target="_blank" rel="noopener">Image Optimizer</a>
+                </div>
+            </div>
+            <div class="footer__bar mono">
+                <span>&copy; <span data-year>2026</span> Wisnu Adi Kurniawan</span>
+                <a href="#top" data-top>Back to top ↑</a>
+            </div>
+        </div>
     </footer>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.155.0/build/three.min.js"></script>
-    <script src="./assets/scripts/script.js"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+    <script src="./assets/scripts/waves.js?v=19"></script>
+    <script src="./assets/scripts/script.js?v=21"></script>
 </body>
 </html>

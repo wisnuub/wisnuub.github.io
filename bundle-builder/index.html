@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="en" data-root="..">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bundle Builder for WooCommerce — build-your-own gift boxes, cards and a mini cart</title>
+    <meta name="description" content="Let shoppers build their own gift box step by step, add a greeting card with a personal message, and check out from a slide-out mini cart. A WooCommerce plugin by Wisnu Adi Kurniawan.">
+    <meta name="theme-color" content="#0a0a0b">
+    <meta property="og:title" content="Bundle Builder for WooCommerce">
+    <meta property="og:description" content="Build-your-own gift boxes, greeting cards with personal messages, and a slide-out mini cart for WooCommerce.">
+    <meta property="og:type" content="product">
+    <meta property="og:url" content="https://wisnuub.github.io/bundle-builder/">
+    <meta property="og:image" content="https://wisnuub.github.io/assets/images/bb/builder.webp">
+    <link rel="canonical" href="https://wisnuub.github.io/bundle-builder/">
+    <link rel="icon" href="../assets/images/icon.webp">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300..600&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap">
+    <link rel="stylesheet" href="../assets/scripts/style.css?v=21">
+    <script>
+    // The homepage (and the first page of a session) gets the W·A·K loader;
+    // every other page washes in.
+    (function (h) { var v = false; try { v = !!sessionStorage.getItem('wk-visited'); } catch (e) {} var f = h.dataset.loader === 'always' || !v; h.classList.add(f ? 'is-first' : 'is-return'); if (f && v) h.classList.add('is-fade'); })(document.documentElement);
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Bundle Builder for WooCommerce",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "WordPress",
+      "softwareVersion": "1.2.1",
+      "description": "Build-your-own gift boxes, greeting cards with personal messages, and a slide-out mini cart for WooCommerce.",
+      "author": { "@type": "Person", "name": "Wisnu Adi Kurniawan", "url": "https://wisnuub.github.io/" },
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+    }
+    </script>
+</head>
+<body class="is-intro page-product">
+    <div class="loader" aria-hidden="true">
+        <div class="loader__mark">
+            <span class="loader__l"><span>W</span></span><span class="loader__l loader__a"><img class="loader__base" src="../assets/images/icon-a.webp" alt=""><img class="loader__fill" src="../assets/images/icon-a.webp" alt=""></span><span class="loader__l"><span>K</span></span>
+        </div>
+        <span class="loader__label mono">Wisnu Adi Kurniawan</span>
+        <span class="loader__num mono">000</span>
+        <div class="loader__bar"><i></i></div>
+    </div>
+    <div class="wash" aria-hidden="true"><div class="wash__panel"></div></div>
+
+    <div class="cursor" aria-hidden="true"><span class="cursor__ring"><span class="cursor__label"></span></span><span class="cursor__dot"></span></div>
+
+    <header class="nav" id="nav">
+        <a class="nav__logo" href="../" aria-label="Wisnu Adi Kurniawan, home"><span class="nav__logo-text"><span>W</span><span>K</span></span><sup>®</sup></a>
+        <nav class="nav__links" aria-label="Bundle Builder">
+            <a href="#how">How it works</a>
+            <a href="#features">Features</a>
+            <a href="#pricing">Pricing</a>
+            <a href="#faq">FAQ</a>
+        </nav>
+        <div class="nav__meta">
+            <a class="nav__cta" href="#pricing">Get early access</a>
+        </div>
+    </header>
+
+    <main class="main" id="top">
+
+        <!-- ─── Hero ─────────────────────────────────────────── -->
+        <section class="hero hero--product" aria-label="Bundle Builder for WooCommerce">
+            <canvas class="hero__waves" data-waves="calmHero" aria-hidden="true"></canvas>
+
+            <div class="hero__stack" aria-hidden="true">
+                <div class="stack__tilt">
+                    <figure class="stack__browser">
+                        <div class="browser__bar"><i></i><i></i><i></i><span class="mono">yourstore.com/build-your-own</span></div>
+                        <img src="../assets/images/bb/builder.webp" alt="" width="2222" height="1456">
+                    </figure>
+                    <figure class="stack__cart"><img src="../assets/images/bb/minicart.webp" alt="" width="928" height="1800"></figure>
+                    <figure class="stack__phone"><img src="../assets/images/bb/mobile.webp" alt="" width="780" height="1688"></figure>
+                </div>
+            </div>
+
+            <div class="hero__corner hero__corner--tl mono" aria-hidden="true">
+                <span>Bundle Builder</span><span>for WooCommerce</span>
+            </div>
+            <div class="hero__corner hero__corner--tr mono" aria-hidden="true">
+                <span>Version 1.2.1</span><span>WordPress 6.2+</span>
+            </div>
+
+            <div class="hero__foot">
+                <div>
+                    <span class="pill mono reveal"><i></i>In review on WordPress.org</span>
+                    <h1 class="hero__title hero__title--product">
+                        <span class="line"><span>Let them build</span></span>
+                        <span class="line"><span><em>the box.</em></span></span>
+                    </h1>
+                </div>
+                <div class="hero__aside">
+                    <p class="hero__lede reveal">Step-by-step build-your-own gift boxes, greeting cards with personal messages, and a slide-out mini cart for WooCommerce.</p>
+                    <div class="btn-row reveal">
+                        <a class="btn btn--solid" href="#pricing">Get early access</a>
+                        <a class="btn" href="#how">See how it works</a>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- ─── How it works ─────────────────────────────────── -->
+        <section class="story" id="how" aria-label="How it works">
+            <header class="sec-head">
+                <span class="eyebrow mono">(01) How it works</span>
+                <h2 class="sec-head__title reveal">A gift box,<br><em>one step at a time.</em></h2>
+            </header>
+
+            <div class="story__grid">
+                <div class="story__stage" aria-hidden="true">
+                    <div class="browser">
+                        <div class="browser__bar"><i></i><i></i><i></i><span class="mono">yourstore.com/build-your-own</span></div>
+                        <div class="browser__view">
+                            <img data-shot="1" class="is-active" src="../assets/images/bb/builder.webp" alt="" width="2222" height="1456">
+                            <img data-shot="2" src="../assets/images/bb/card.webp" alt="" width="2222" height="1456" loading="lazy">
+                            <img data-shot="3" src="../assets/images/bb/review.webp" alt="" width="2222" height="1456" loading="lazy">
+                            <img data-shot="4" src="../assets/images/bb/done.webp" alt="" width="2222" height="1216" loading="lazy">
+                        </div>
+                    </div>
+                </div>
+
+                <ol class="story__steps">
+                    <li class="story__step is-active" data-step="1">
+                        <span class="mono">01</span>
+                        <h3>Choose a box, fill it</h3>
+                        <p>Shoppers pick a box, give it a name ("Sam's birthday box") and fill it from your product steps. Products fly into the box as they're added and the total counts up in a panel that follows them down the page.</p>
+                        <img class="story__inline" src="../assets/images/bb/builder.webp" alt="The fill-your-box step, with the box summary beside the products" width="2222" height="1456" loading="lazy">
+                    </li>
+                    <li class="story__step" data-step="2">
+                        <span class="mono">02</span>
+                        <h3>Add a card</h3>
+                        <p>A card step lets them choose a design and write a personal message, or leave it blank for a handwritten note.</p>
+                        <img class="story__inline" src="../assets/images/bb/card.webp" alt="The card step: four card designs and a message box" width="2222" height="1456" loading="lazy">
+                    </li>
+                    <li class="story__step" data-step="3">
+                        <span class="mono">03</span>
+                        <h3>Review everything</h3>
+                        <p>Every step on one page, each with its own edit link, and a clear breakdown of the box, items and card.</p>
+                        <img class="story__inline" src="../assets/images/bb/review.webp" alt="The review step listing every item in the box" width="2222" height="1456" loading="lazy">
+                    </li>
+                    <li class="story__step" data-step="4">
+                        <span class="mono">04</span>
+                        <h3>Close the lid</h3>
+                        <p>The whole box goes into the cart in one go. The lid closes with a burst of confetti, and the box name follows the order all the way to your packing slip.</p>
+                        <img class="story__inline" src="../assets/images/bb/done.webp" alt="The finished box with its name and a checkout button" width="2222" height="1216" loading="lazy">
+                    </li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- ─── Features ─────────────────────────────────────── -->
+        <section class="features" id="features" aria-label="Features">
+            <header class="sec-head">
+                <span class="eyebrow mono">(02) Features</span>
+                <h2 class="sec-head__title reveal">Three tools,<br><em>one plugin.</em></h2>
+            </header>
+
+            <div class="bento">
+                <article class="bento__card reveal">
+                    <span class="mono">Bundle builder</span>
+                    <h3>Build-your-own boxes</h3>
+                    <p>Steps from any products or whole categories. Limit each step by minimum and maximum items, maximum of each product or maximum spend, and give a bundle discount.</p>
+                </article>
+                <article class="bento__card reveal">
+                    <span class="mono">Greeting cards</span>
+                    <h3>A card with every gift</h3>
+                    <p>On product pages, from a quick-add popup on shop pages, in the cart or at checkout. A different message for each one they buy, edited right in the cart.</p>
+                </article>
+                <article class="bento__card bento__card--media reveal">
+                    <div>
+                        <span class="mono">Mini cart</span>
+                        <h3>A cart that slides out</h3>
+                        <p>Opens from your theme's own cart icon, with quantity controls, undo on remove, bundle contents, in-cart variation changes and a free shipping bar.</p>
+                    </div>
+                    <img src="../assets/images/bb/minicart.webp" alt="The slide-out mini cart with a named box, its card and a free shipping bar" width="928" height="1800" loading="lazy">
+                </article>
+            </div>
+
+            <ul class="specs">
+                <li class="reveal"><span class="mono">01</span>Works with any theme. The builder adapts to the width it's given.</li>
+                <li class="reveal"><span class="mono">02</span>Shortcodes for Elementor, Divi and other page builders.</li>
+                <li class="reveal"><span class="mono">03</span>Prices are always worked out on the server, never trusted from the browser.</li>
+                <li class="reveal"><span class="mono">04</span>Store-wide colours, plus per-bundle colours for seasonal ranges.</li>
+                <li class="reveal"><span class="mono">05</span>Respects "reduce motion", with its own animation level setting.</li>
+                <li class="reveal"><span class="mono">06</span>Every template can be overridden from your theme.</li>
+                <li class="reveal"><span class="mono">07</span>HPOS compatible.</li>
+                <li class="reveal"><span class="mono">08</span>A drag-to-open "Your box" sheet on phones.</li>
+            </ul>
+        </section>
+
+        <!-- ─── Pricing ──────────────────────────────────────── -->
+        <section class="pricing" id="pricing" aria-label="Pricing">
+            <header class="sec-head">
+                <span class="eyebrow mono">(03) Pricing</span>
+                <h2 class="sec-head__title reveal">Start free,<br><em>grow into Pro.</em></h2>
+            </header>
+
+            <div class="plans">
+                <article class="plan reveal">
+                    <span class="mono">Free</span>
+                    <p class="plan__price">$0</p>
+                    <p class="plan__note">From WordPress.org once review is through.</p>
+                    <ul>
+                        <li>One bundle, with up to two product steps</li>
+                        <li>Name your box, review step and finale</li>
+                        <li>Greeting cards on product pages</li>
+                        <li>Mini cart and free shipping bar</li>
+                        <li>Store-wide colours, custom CSS</li>
+                        <li>Support on the WordPress.org forum</li>
+                    </ul>
+                    <a class="btn" href="mailto:wisnuadi415@gmail.com?subject=Bundle%20Builder%20-%20tell%20me%20when%20it's%20live" data-cursor="Email">Tell me when it's live</a>
+                </article>
+                <article class="plan plan--pro reveal">
+                    <canvas class="plan__waves" data-waves="calm" aria-hidden="true"></canvas>
+                    <span class="mono">Pro <span class="plan__soon">Coming soon</span></span>
+                    <p class="plan__price"><em>Early access</em></p>
+                    <p class="plan__note">Join the list for launch pricing before anyone else.</p>
+                    <ul>
+                        <li>Unlimited bundles and steps</li>
+                        <li>Step limits: items, each product, spend</li>
+                        <li>Card step inside a bundle</li>
+                        <li>Bundle discounts and per-bundle colours</li>
+                        <li>Stock reduction for bundled items</li>
+                        <li>Cards at checkout, quick add and cart editing</li>
+                        <li>Variation changes in the cart</li>
+                        <li>Priority email support</li>
+                    </ul>
+                    <a class="btn btn--solid" href="mailto:wisnuadi415@gmail.com?subject=Bundle%20Builder%20Pro%20-%20early%20access&body=Hi%20Wisnu%2C%0A%0AI'd%20like%20early%20access%20to%20Bundle%20Builder%20Pro.%0A%0AMy%20store%3A%20" data-cursor="Email">Join the waitlist</a>
+                </article>
+            </div>
+        </section>
+
+        <!-- ─── FAQ ──────────────────────────────────────────── -->
+        <section class="faq" id="faq" aria-label="Questions">
+            <header class="sec-head">
+                <span class="eyebrow mono">(04) FAQ</span>
+                <h2 class="sec-head__title reveal">Good<br><em>questions.</em></h2>
+            </header>
+            <div class="faq__list">
+                <details>
+                    <summary>Can I use it with a page builder?</summary>
+                    <p>Yes. Place the <code>[bundle_builder]</code>, <code>[bb_checkout_cards]</code> and <code>[bb_cart_icon]</code> shortcodes in any shortcode or code module.</p>
+                </details>
+                <details>
+                    <summary>Where do card designs come from?</summary>
+                    <p>From a product category you choose in the settings. Every published, in-stock simple product in it is offered as a card design, in menu order.</p>
+                </details>
+                <details>
+                    <summary>Does it work with the block Cart and Checkout?</summary>
+                    <p>Bundles, cards and the mini cart work with them. Nesting cards under their product on the cart page and the checkout card section need the classic (shortcode) Cart and Checkout pages.</p>
+                </details>
+                <details>
+                    <summary>Does it reduce the stock of products inside a bundle?</summary>
+                    <p>When you turn on "Reduce the stock of every item inside a bundle" in the settings. The box itself always has its stock reduced, like any product.</p>
+                </details>
+                <details>
+                    <summary>Will my theme break it?</summary>
+                    <p>The builder adapts to the width it's given, whether that's full width, beside a sidebar or in a page builder column. The "Your box" panel keeps floating even in themes that break sticky positioning, and every template can be overridden from your theme.</p>
+                </details>
+                <details>
+                    <summary>I need something custom.</summary>
+                    <p>I build custom WooCommerce work too. <a href="mailto:wisnuadi415@gmail.com?subject=Bundle%20Builder%20-%20custom%20work">Email me</a> with what your store needs.</p>
+                </details>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer" id="contact">
+        <canvas class="footer__waves" data-waves="calm" aria-hidden="true"></canvas>
+        <div class="footer__inner">
+            <span class="eyebrow mono">Bundle Builder for WooCommerce</span>
+            <a class="footer__cta" href="mailto:wisnuadi415@gmail.com?subject=Bundle%20Builder%20Pro%20-%20early%20access" data-cursor="Email">Get <em>early access.</em></a>
+            <div class="footer__grid">
+                <div>
+                    <h4 class="mono">Contact</h4>
+                    <a href="mailto:wisnuadi415@gmail.com">wisnuadi415@gmail.com</a>
+                    <a href="https://api.whatsapp.com/send?phone=6281558911373" target="_blank" rel="noopener">WhatsApp</a>
+                </div>
+                <div>
+                    <h4 class="mono">Plugin</h4>
+                    <a href="#how">How it works</a>
+                    <a href="#features">Features</a>
+                    <a href="#pricing">Pricing</a>
+                    <a href="#faq">FAQ</a>
+                </div>
+                <div>
+                    <h4 class="mono">Made by</h4>
+                    <a href="../">Wisnu Adi Kurniawan</a>
+                    <a href="https://github.com/wisnuub" target="_blank" rel="noopener">GitHub</a>
+                </div>
+                <div>
+                    <h4 class="mono">More plugins</h4>
+                    <a href="https://github.com/wisnuub/media-janitor" target="_blank" rel="noopener">Media Janitor</a>
+                    <a href="https://github.com/wisnuub/wp-image-optimizer" target="_blank" rel="noopener">Image Optimizer</a>
+                </div>
+            </div>
+            <div class="footer__bar mono">
+                <span>&copy; <span data-year>2026</span> Wisnu Adi Kurniawan</span>
+                <a href="#top" data-top>Back to top ↑</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+    <script src="../assets/scripts/waves.js?v=19"></script>
+    <script src="../assets/scripts/script.js?v=21"></script>
+</body>
+</html>
