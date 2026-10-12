@@ -617,6 +617,15 @@ section { position: relative; }
 .plan li { padding: 13px 0 13px 26px; border-bottom: 1px solid var(--line); position: relative; }
 .plan li::before { content: '+'; position: absolute; left: 2px; color: var(--red); font-family: var(--mono); }
 .plan .btn { align-self: flex-start; }
+.plan__price small { margin-left: 10px; font-size: 15px; letter-spacing: 0; color: var(--mute); }
+.licenses { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 0 0 22px; padding: 0; border: 0; }
+.licenses legend { float: left; margin-right: 8px; color: var(--mute); font-size: 12px; }
+.licenses label { cursor: pointer; }
+.licenses input { position: absolute; opacity: 0; pointer-events: none; }
+.licenses span { display: inline-block; padding: 8px 14px; border: 1px solid var(--line); border-radius: 99px; font-family: var(--mono); font-size: 12px; transition: background .3s var(--ease), border-color .3s var(--ease), color .3s var(--ease); }
+.licenses label:hover span { border-color: rgba(236, 232, 223, .4); }
+.licenses input:checked + span { background: var(--bone); border-color: var(--bone); color: var(--ink); }
+.licenses input:focus-visible + span { outline: 2px solid var(--red); outline-offset: 2px; }
 @media (max-width: 860px) { .plans { grid-template-columns: 1fr; } }
 
 /* FAQ */
