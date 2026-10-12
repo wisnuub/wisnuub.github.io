@@ -32,7 +32,7 @@
       "softwareVersion": "1.3.0",
       "description": "Build-your-own gift boxes, greeting cards with personal messages, and a slide-out mini cart for WooCommerce.",
       "author": { "@type": "Person", "name": "Wisnu Adi Kurniawan", "url": "https://wisnuub.github.io/" },
-      "offers": { "@type": "AggregateOffer", "lowPrice": "0", "highPrice": "199", "priceCurrency": "USD" }
+      "offers": { "@type": "AggregateOffer", "lowPrice": "0", "highPrice": "599", "priceCurrency": "USD" }
     }
     </script>
 </head>
@@ -88,7 +88,7 @@
 
             <div class="hero__foot">
                 <div>
-                    <span class="pill mono reveal"><i></i>In review on WordPress.org</span>
+                    <span class="pill mono reveal"><i></i>Pro available now</span>
                     <h1 class="hero__title hero__title--product">
                         <span class="line"><span>Let them build</span></span>
                         <span class="line"><span><em>the box.</em></span></span>
@@ -203,9 +203,9 @@
 
             <div class="plans">
                 <article class="plan reveal">
-                    <span class="mono">Free</span>
+                    <span class="mono">Free <span class="plan__soon">Coming soon</span></span>
                     <p class="plan__price">$0</p>
-                    <p class="plan__note">From WordPress.org once review is through.</p>
+                    <p class="plan__note">Waiting for WordPress.org review. It'll be a free download there once it's through.</p>
                     <ul>
                         <li>One bundle, with up to two product steps</li>
                         <li>Name your box, review step and finale</li>
@@ -218,14 +218,20 @@
                 </article>
                 <article class="plan plan--pro reveal">
                     <canvas class="plan__waves" data-waves="calm" aria-hidden="true"></canvas>
-                    <span class="mono">Pro</span>
-                    <p class="plan__price"><span data-plan-price>$49</span><small>/ year</small></p>
-                    <p class="plan__note">Updates and priority support for a year, 14-day money-back guarantee. Pay in USD, EUR, GBP or AUD.</p>
+                    <span class="mono">Pro <span class="plan__soon plan__soon--live">Available now</span></span>
+                    <p class="plan__price"><span data-plan-price>$49</span><small data-plan-cycle>/ year</small></p>
+                    <p class="plan__deal" data-plan-deal hidden>Launch offer: <strong data-plan-deal-price>$89.40</strong> with code <span class="mono">LAUNCH</span>, until 31 December 2026.</p>
+                    <p class="plan__note">Yearly: updates and support for a year. Lifetime: pay once, updates for life. 14-day money-back guarantee. Pay in USD, EUR, GBP or AUD.</p>
+                    <fieldset class="licenses">
+                        <legend class="mono">Billing</legend>
+                        <label><input type="radio" name="cycle" value="annual" checked><span>Yearly</span></label>
+                        <label><input type="radio" name="cycle" value="lifetime"><span>Lifetime</span></label>
+                    </fieldset>
                     <fieldset class="licenses">
                         <legend class="mono">Sites</legend>
-                        <label><input type="radio" name="licenses" value="1" data-price="$49" checked><span>1 site</span></label>
-                        <label><input type="radio" name="licenses" value="5" data-price="$119"><span>5 sites</span></label>
-                        <label><input type="radio" name="licenses" value="unlimited" data-price="$199"><span>Unlimited</span></label>
+                        <label><input type="radio" name="licenses" value="1" checked><span>1 site</span></label>
+                        <label><input type="radio" name="licenses" value="5"><span>5 sites</span></label>
+                        <label><input type="radio" name="licenses" value="unlimited"><span>Unlimited</span></label>
                     </fieldset>
                     <ul>
                         <li>Unlimited bundles and steps</li>
@@ -271,7 +277,7 @@
                 </details>
                 <details>
                     <summary>How does the Pro licence work?</summary>
-                    <p>Pro is a yearly licence for one, five or unlimited sites, with updates and priority email support while it's active. Checkout, licence keys and invoices are handled by Freemius; you enter the key in your WordPress admin to switch Pro on.</p>
+                    <p>Pro is a yearly or lifetime licence for one, five or unlimited sites. Yearly includes updates and priority email support for a year; lifetime is a single payment with updates for life. Checkout, licence keys and invoices are handled by Freemius; you enter the key in your WordPress admin to switch Pro on.</p>
                 </details>
                 <details>
                     <summary>I need something custom.</summary>
@@ -281,6 +287,14 @@
         </section>
 
     </main>
+
+    <aside class="offer" data-offer="launch-2026" data-ends="2027-01-01" aria-label="Launch offer" hidden>
+        <span class="offer__tag mono">Launch offer</span>
+        <p class="offer__text"><strong>40% off a lifetime licence</strong> of Wisnoob Gift Bundle Builder Pro with code <span class="mono">LAUNCH</span>, until 31&nbsp;December&nbsp;2026.</p>
+        <a class="offer__cta" href="#pricing" data-offer-buy>Get it <span aria-hidden="true">→</span></a>
+        <button class="offer__close" type="button" aria-label="Hide the offer">×</button>
+    </aside>
+
 
     <footer class="footer" id="contact">
         <canvas class="footer__waves" data-waves="calm" aria-hidden="true"></canvas>
@@ -322,23 +336,56 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
     <script src="../assets/scripts/waves.js?v=19"></script>
-    <script src="../assets/scripts/script.js?v=21"></script>
+    <script src="../assets/scripts/script.js?v=22"></script>
     <script src="https://checkout.freemius.com/js/v1/"></script>
     <script>
-    // Pro checkout: the licence pills set the price and the number of sites;
-    // "Buy Pro" opens the Freemius checkout over the page (or follows its
-    // link if the checkout script didn't load).
+    // Pro checkout. The billing and licence pills set the price; "Buy Pro"
+    // (and the launch offer banner) open the Freemius checkout over the page,
+    // or follow the checkout link if its script didn't load. Until the offer
+    // ends, lifetime licences open with the LAUNCH coupon applied.
     (function () {
+        var PRICES = {
+            annual: { '1': '$49', '5': '$119', unlimited: '$199' },
+            lifetime: { '1': '$149', '5': '$299', unlimited: '$599' }
+        };
+        var DEAL = { '1': '$89.40', '5': '$179.40', unlimited: '$359.40' };
+        var OFFER_ON = Date.now() < new Date(2027, 0, 1).getTime();
+        var LINK = 'https://checkout.freemius.com/plugin/41291/plan/71654/';
+
         var buy = document.querySelector('[data-buy]');
         var price = document.querySelector('[data-plan-price]');
-        var sites = '1';
-        document.querySelectorAll('input[name="licenses"]').forEach(function (input) {
+        var cycleLabel = document.querySelector('[data-plan-cycle]');
+        var deal = document.querySelector('[data-plan-deal]');
+        var dealPrice = document.querySelector('[data-plan-deal-price]');
+        var state = { cycle: 'annual', sites: '1' };
+
+        function options(cycle) {
+            var o = { licenses: state.sites, billing_cycle: cycle };
+            if ('lifetime' === cycle && OFFER_ON) { o.coupon = 'LAUNCH'; }
+            return o;
+        }
+        function link(cycle) {
+            var o = options(cycle);
+            return LINK + '?licenses=' + o.licenses + '&billing_cycle=' + o.billing_cycle + (o.coupon ? '&coupon=' + o.coupon : '');
+        }
+        function update() {
+            price.textContent = PRICES[state.cycle][state.sites];
+            cycleLabel.textContent = 'lifetime' === state.cycle ? 'once' : '/ year';
+            deal.hidden = !( 'lifetime' === state.cycle && OFFER_ON );
+            dealPrice.textContent = DEAL[state.sites];
+            buy.href = link(state.cycle);
+        }
+        document.querySelectorAll('input[name="cycle"], input[name="licenses"]').forEach(function (input) {
             input.addEventListener('change', function () {
-                sites = input.value;
-                price.textContent = input.dataset.price;
-                buy.href = buy.href.split('?')[0] + '?licenses=' + sites;
+                state['cycle' === input.name ? 'cycle' : 'sites'] = input.value;
+                update();
             });
         });
+        update();
+
+        var offerBuy = document.querySelector('[data-offer-buy]');
+        if (offerBuy) { offerBuy.href = link('lifetime'); }
+
         if (!window.FS || !FS.Checkout) { return; }
         var checkout = new FS.Checkout({
             product_id: '41291',
@@ -346,10 +393,13 @@
             public_key: 'pk_1b1d48a3a2d161b92ad7ad8845a2d',
             image: 'https://wisnuub.github.io/assets/images/bb/icon.png'
         });
-        buy.addEventListener('click', function (e) {
-            e.preventDefault();
-            checkout.open({ name: 'Wisnoob Gift Bundle Builder', licenses: sites });
-        });
+        function open(cycle) {
+            var o = options(cycle);
+            o.name = 'Wisnoob Gift Bundle Builder';
+            checkout.open(o);
+        }
+        buy.addEventListener('click', function (e) { e.preventDefault(); open(state.cycle); });
+        if (offerBuy) { offerBuy.addEventListener('click', function (e) { e.preventDefault(); open('lifetime'); }); }
     })();
     </script>
 </body>

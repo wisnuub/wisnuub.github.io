@@ -643,7 +643,31 @@ function showreel() {
     });
 }
 
+// ─── Offer banner ────────────────────────────────────────────────────────
+// Shown until the end of the day before data-ends (visitor's local time),
+// unless the visitor has hidden it.
+function offer() {
+    const el = document.querySelector('[data-offer]');
+    if (!el) return;
+    const [y, m, d] = el.dataset.ends.split('-').map(Number);
+    const key = 'wk-offer-' + el.dataset.offer;
+    let hiddenByVisitor = false;
+    try { hiddenByVisitor = !!localStorage.getItem(key); } catch (e) {}
+    if (hiddenByVisitor || Date.now() >= new Date(y, m - 1, d).getTime()) return;
+    el.hidden = false;
+    // Out of the way while the pricing (which shows the deal itself) is on screen.
+    const plans = document.querySelector('.plans');
+    if (plans && 'IntersectionObserver' in window) {
+        new IntersectionObserver(([entry]) => el.classList.toggle('is-tucked', entry.isIntersecting)).observe(plans);
+    }
+    el.querySelector('.offer__close').addEventListener('click', () => {
+        el.hidden = true;
+        try { localStorage.setItem(key, '1'); } catch (e) {}
+    });
+}
+
 // ─── Go ──────────────────────────────────────────────────────────────────
+offer();
 nav();
 wordScrub();
 reveals();
