@@ -58,6 +58,44 @@ function drawGiftBox(ctx, W, H, at = 0.5) {
     ctx.beginPath(); ctx.ellipse(cx + bw * 0.15, by - lidH - H * 0.05, bw * 0.13, H * 0.045, 0.35, 0, Math.PI * 2); ctx.stroke();
 }
 
+// A broom drawn the same way: a leaning handle, a bristle head with grooves,
+// a binding band and two sparkles tinted with the accent.
+function drawBroom(ctx, W, H) {
+    ctx.fillStyle = '#000';
+    ctx.fillRect(0, 0, W, H);
+    ctx.filter = 'blur(5px)';
+    const tilt = 0.5;
+    ctx.save();
+    ctx.translate(W * 0.47, H * 0.5);
+    ctx.rotate(tilt);
+    // Handle, from the binding up.
+    ctx.fillStyle = 'rgb(170,0,0)';
+    ctx.beginPath(); ctx.roundRect(-W * 0.018, -H * 0.62, W * 0.036, H * 0.62, W * 0.018); ctx.fill();
+    // Bristle head: narrow at the binding, wide at the floor.
+    const top = W * 0.07, bottom = W * 0.17, len = H * 0.36;
+    ctx.fillStyle = 'rgb(255,0,0)';
+    ctx.beginPath();
+    ctx.moveTo(-top, 0); ctx.lineTo(top, 0); ctx.lineTo(bottom, len); ctx.lineTo(-bottom, len);
+    ctx.closePath(); ctx.fill();
+    ctx.strokeStyle = '#000';
+    ctx.lineWidth = W * 0.008;
+    for (let i = -2; i <= 2; i++) {
+        ctx.beginPath(); ctx.moveTo(i * top * 0.38, len * 0.22); ctx.lineTo(i * bottom * 0.38, len * 0.96); ctx.stroke();
+    }
+    ctx.fillStyle = 'rgb(255,255,0)';
+    ctx.beginPath(); ctx.roundRect(-top * 1.15, -H * 0.02, top * 2.3, H * 0.07, 6); ctx.fill();
+    ctx.restore();
+    const sparkle = (x, y, r) => {
+        ctx.beginPath();
+        ctx.moveTo(x, y - r); ctx.lineTo(x + r * 0.25, y - r * 0.25); ctx.lineTo(x + r, y);
+        ctx.lineTo(x + r * 0.25, y + r * 0.25); ctx.lineTo(x, y + r); ctx.lineTo(x - r * 0.25, y + r * 0.25);
+        ctx.lineTo(x - r, y); ctx.lineTo(x - r * 0.25, y - r * 0.25); ctx.closePath(); ctx.fill();
+    };
+    ctx.fillStyle = 'rgb(255,255,0)';
+    sparkle(W * 0.27, H * 0.3, W * 0.055);
+    sparkle(W * 0.19, H * 0.47, W * 0.03);
+}
+
 const WAVE_PRESETS = {
     // Not interactive: the pointer shouldn't pull the face around.
     portrait: () => ({ source: ROOT + '/assets/images/hero-1920.webp', photo: true, narrowZoom: 1.35, interactive: false,
@@ -71,6 +109,7 @@ const WAVE_PRESETS = {
                                  mouth: [0.5, 0.6, 0.046, 0.017],
                                  eyes: { left: [0.4485, 0.42], right: [0.5515, 0.42], size: [0.036, 0.034] } } }),
     box:      () => ({ draw: drawGiftBox, gap: 7, mobileGap: 6, relief: 2.6, amp: 0.45 }),
+    broom:    () => ({ draw: drawBroom, gap: 7, mobileGap: 6, relief: 2.6, amp: 0.45 }),
     calmHero: () => ({ amp: 0.9, reveal: 0 }),
     calm:     () => ({ amp: 1.1, interactive: true }),
 };

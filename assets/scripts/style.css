@@ -336,7 +336,16 @@ section { position: relative; }
 .feature__title { font-weight: 400; font-size: clamp(36px, 4.4vw, 68px); line-height: .95; letter-spacing: -.04em; }
 .feature__title em { display: block; color: var(--mute); }
 .feature__body p { color: rgba(236, 232, 223, .75); max-width: 42ch; }
-@media (max-width: 900px) { .feature { grid-template-columns: 1fr; } .feature__body { padding: 8px 4px 12px; } }
+.feature + .feature { margin-top: 14px; }
+/* Every other feature puts its picture on the right. */
+.feature--flip { grid-template-columns: 1fr 1.45fr; }
+.feature--flip .feature__media { order: 2; }
+.feature--flip .feature__body { padding: 0 0 0 clamp(0px, 2vw, 24px); }
+@media (max-width: 900px) {
+    .feature, .feature--flip { grid-template-columns: 1fr; }
+    .feature__body, .feature--flip .feature__body { padding: 8px 4px 12px; }
+    .feature--flip .feature__media { order: 0; }
+}
 
 .plugin-list { list-style: none; margin: clamp(48px, 7vw, 96px) var(--pad) 0; border-top: 1px solid var(--line); }
 .plugin-list a {
@@ -529,11 +538,19 @@ section { position: relative; }
     left: -9%; bottom: 6%; width: 22%; aspect-ratio: 780 / 1500;
     border-radius: 18px; border: 5px solid #1b1b1e; translate: 0 0 120px;
 }
+/* A wide pop-up floating in front, for plugins without a mini cart. */
+.stack__card {
+    position: absolute; overflow: hidden; background: #fff;
+    right: -10%; bottom: -12%; width: 50%; aspect-ratio: 1216 / 550;
+    border-radius: 12px; translate: 0 0 90px;
+    box-shadow: 0 40px 100px rgba(0, 0, 0, .65);
+}
+.stack__card img { width: 100%; height: 100%; object-fit: cover; }
 .hero--product::after { height: 55%; }
 @media (max-width: 760px) {
     .hero__stack { top: calc(var(--nav-h) + 8px); left: var(--pad); right: var(--pad); width: auto; }
     .stack__tilt { transform: rotateY(-10deg) rotateX(6deg) scale(.9); }
-    .stack__cart { right: -4%; }
+    .stack__cart, .stack__card { right: -4%; }
     .stack__phone { left: -2%; }
 }
 
@@ -587,6 +604,10 @@ section { position: relative; }
 }
 .bento__card--media > div { display: flex; flex-direction: column; gap: 14px; align-self: center; padding-bottom: clamp(24px, 3vw, 40px); }
 .bento__card--media img { width: min(100%, 420px); justify-self: center; border-radius: 12px 12px 0 0; max-height: 520px; object-fit: cover; object-position: top; }
+.bento__shot {
+    aspect-ratio: 16 / 10; object-fit: cover; object-position: left top;
+    border: 1px solid var(--line); border-radius: 10px; margin-bottom: 8px;
+}
 @media (max-width: 760px) { .bento, .bento__card--media { grid-template-columns: 1fr; } }
 
 .specs {

@@ -1,0 +1,408 @@
+<!doctype html>
+<html lang="en" data-root="..">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wisnoob Media Cleanup: find unused media and see where every file is used</title>
+    <meta name="description" content="Find unused and duplicate media in WordPress, see exactly where every file is used, and clean up your library with confidence. Pro adds a 30-day quarantine with one-click restore. A plugin by Wisnu Adi Kurniawan.">
+    <meta name="theme-color" content="#0a0a0b">
+    <meta property="og:title" content="Wisnoob Media Cleanup">
+    <meta property="og:description" content="Find unused and duplicate media, see exactly where every file is used, and clean up your WordPress library with confidence.">
+    <meta property="og:type" content="product">
+    <meta property="og:url" content="https://wisnuub.github.io/wisnoob-media-cleanup/">
+    <meta property="og:image" content="https://wisnuub.github.io/assets/images/wmc/dashboard.webp">
+    <link rel="canonical" href="https://wisnuub.github.io/wisnoob-media-cleanup/">
+    <link rel="icon" href="../assets/images/icon.webp">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300..600&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap">
+    <link rel="stylesheet" href="../assets/scripts/style.css?v=23">
+    <script>
+    // The homepage (and the first page of a session) gets the W·A·K loader;
+    // every other page washes in.
+    (function (h) { var v = false; try { v = !!sessionStorage.getItem('wk-visited'); } catch (e) {} var f = h.dataset.loader === 'always' || !v; h.classList.add(f ? 'is-first' : 'is-return'); if (f && v) h.classList.add('is-fade'); })(document.documentElement);
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Wisnoob Media Cleanup",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "WordPress",
+      "softwareVersion": "1.1.0",
+      "description": "Find unused and duplicate media, see exactly where every file is used, and clean up your WordPress library with confidence.",
+      "author": { "@type": "Person", "name": "Wisnu Adi Kurniawan", "url": "https://wisnuub.github.io/" },
+      "offers": [
+        { "@type": "Offer", "name": "Free", "price": "0", "priceCurrency": "USD" },
+        { "@type": "Offer", "name": "Pro, single site, yearly", "price": "29", "priceCurrency": "USD" }
+      ]
+    }
+    </script>
+</head>
+<body class="is-intro page-product">
+    <div class="loader" aria-hidden="true">
+        <div class="loader__mark">
+            <span class="loader__l"><span>W</span></span><span class="loader__l loader__a"><img class="loader__base" src="../assets/images/icon-a.webp" alt=""><img class="loader__fill" src="../assets/images/icon-a.webp" alt=""></span><span class="loader__l"><span>K</span></span>
+        </div>
+        <span class="loader__label mono">Wisnu Adi Kurniawan</span>
+        <span class="loader__num mono">000</span>
+        <div class="loader__bar"><i></i></div>
+    </div>
+    <div class="wash" aria-hidden="true"><div class="wash__panel"></div></div>
+
+    <div class="cursor" aria-hidden="true"><span class="cursor__ring"><span class="cursor__label"></span></span><span class="cursor__dot"></span></div>
+
+    <header class="nav" id="nav">
+        <a class="nav__logo" href="../" aria-label="Wisnu Adi Kurniawan, home"><span class="nav__logo-text"><span>W</span><span>K</span></span><sup>®</sup></a>
+        <nav class="nav__links" aria-label="Wisnoob Media Cleanup">
+            <a href="#how">How it works</a>
+            <a href="#features">Features</a>
+            <a href="#pro">Pro</a>
+            <a href="#pricing">Pricing</a>
+            <a href="#faq">FAQ</a>
+        </nav>
+        <div class="nav__meta">
+            <a class="nav__cta" href="#pricing">Get Pro</a>
+        </div>
+    </header>
+
+    <main class="main" id="top">
+
+        <!-- ─── Hero ─────────────────────────────────────────── -->
+        <section class="hero hero--product" aria-label="Wisnoob Media Cleanup">
+            <canvas class="hero__waves" data-waves="calmHero" aria-hidden="true"></canvas>
+
+            <div class="hero__stack" aria-hidden="true">
+                <div class="stack__tilt">
+                    <figure class="stack__browser">
+                        <div class="browser__bar"><i></i><i></i><i></i><span class="mono">yoursite.com/wp-admin/upload.php</span></div>
+                        <img src="../assets/images/wmc/dashboard.webp" alt="" width="2222" height="1455">
+                    </figure>
+                    <figure class="stack__card"><img src="../assets/images/wmc/modal.webp" alt="" width="1216" height="550"></figure>
+                    <figure class="stack__phone"><img src="../assets/images/wmc/mobile.webp" alt="" width="780" height="1500"></figure>
+                </div>
+            </div>
+
+            <div class="hero__corner hero__corner--tl mono" aria-hidden="true">
+                <span>Wisnoob Media Cleanup</span><span>for WordPress</span>
+            </div>
+            <div class="hero__corner hero__corner--tr mono" aria-hidden="true">
+                <span>Version 1.1.0</span><span>WordPress 5.8+</span>
+            </div>
+
+            <div class="hero__foot">
+                <div>
+                    <span class="pill mono reveal"><i></i>In review on WordPress.org</span>
+                    <h1 class="hero__title hero__title--product">
+                        <span class="line"><span>Clean the library.</span></span>
+                        <span class="line"><span><em>Keep the site.</em></span></span>
+                    </h1>
+                </div>
+                <div class="hero__aside">
+                    <p class="hero__lede reveal">Find unused and duplicate media, see exactly where every file is used, and clean up your WordPress library with confidence.</p>
+                    <div class="btn-row reveal">
+                        <a class="btn btn--solid" href="#pricing">Get Pro</a>
+                        <a class="btn" href="#how">See how it works</a>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- ─── How it works ─────────────────────────────────── -->
+        <section class="story" id="how" aria-label="How it works">
+            <header class="sec-head">
+                <span class="eyebrow mono">(01) How it works</span>
+                <h2 class="sec-head__title reveal">Know before<br><em>you delete.</em></h2>
+            </header>
+
+            <div class="story__grid">
+                <div class="story__stage" aria-hidden="true">
+                    <div class="browser">
+                        <div class="browser__bar"><i></i><i></i><i></i><span class="mono">yoursite.com</span></div>
+                        <div class="browser__view">
+                            <img data-shot="1" class="is-active" src="../assets/images/wmc/dashboard.webp" alt="" width="2222" height="1455">
+                            <img data-shot="2" src="../assets/images/wmc/usage.webp" alt="" width="2222" height="1455" loading="lazy">
+                            <img data-shot="3" src="../assets/images/wmc/find.webp" alt="" width="2222" height="1455" loading="lazy">
+                            <img data-shot="4" src="../assets/images/wmc/duplicates.webp" alt="" width="2222" height="1455" loading="lazy">
+                        </div>
+                    </div>
+                </div>
+
+                <ol class="story__steps">
+                    <li class="story__step is-active" data-step="1">
+                        <span class="mono">01</span>
+                        <h3>Scan everything</h3>
+                        <p>One click scans posts, pages, products, custom fields, page builders, widgets, menus and theme settings. Big libraries are scanned in small steps, so nothing times out.</p>
+                        <img class="story__inline" src="../assets/images/wmc/dashboard.webp" alt="The summary cards and the grid of unused files after a scan" width="2222" height="1455" loading="lazy">
+                    </li>
+                    <li class="story__step" data-step="2">
+                        <span class="mono">02</span>
+                        <h3>See where it's used</h3>
+                        <p>Every file lists the pages, products and settings that use it. No bare "unused" label you have to take on trust.</p>
+                        <img class="story__inline" src="../assets/images/wmc/usage.webp" alt="The Used In details for a photo, showing the page it appears on" width="2222" height="1455" loading="lazy">
+                    </li>
+                    <li class="story__step" data-step="3">
+                        <span class="mono">03</span>
+                        <h3>Find it on the page</h3>
+                        <p>Find on page opens the page, scrolls to the image and highlights it, so you can check with your own eyes before deleting anything.</p>
+                        <img class="story__inline" src="../assets/images/wmc/find.webp" alt="A photo highlighted on the live page, with a bar showing the match" width="2222" height="1455" loading="lazy">
+                    </li>
+                    <li class="story__step" data-step="4">
+                        <span class="mono">04</span>
+                        <h3>Clear out duplicates</h3>
+                        <p>Exact copies, @2x scale exports and the same picture in another size or format. Each copy shows whether it's used, so you keep the one your pages rely on.</p>
+                        <img class="story__inline" src="../assets/images/wmc/duplicates.webp" alt="The Duplicates tab with exact, scale and visual duplicate groups" width="2222" height="1455" loading="lazy">
+                    </li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- ─── Features ─────────────────────────────────────── -->
+        <section class="features" id="features" aria-label="Features">
+            <header class="sec-head">
+                <span class="eyebrow mono">(02) Features</span>
+                <h2 class="sec-head__title reveal">Careful<br><em>by design.</em></h2>
+            </header>
+
+            <div class="bento">
+                <article class="bento__card reveal">
+                    <span class="mono">Safety first</span>
+                    <h3>Nothing goes by accident</h3>
+                    <p>Deleting stays off until a scan has fully finished. Right before deleting, it re-checks content edited since the scan, and every delete asks first.</p>
+                </article>
+                <article class="bento__card reveal">
+                    <span class="mono">Deep scan</span>
+                    <h3>Looks where images hide</h3>
+                    <p>Block attributes, gallery shortcodes, ACF fields, Elementor data, WooCommerce galleries and category thumbnails, templates, global styles and Additional CSS.</p>
+                </article>
+                <article class="bento__card bento__card--media reveal">
+                    <div>
+                        <span class="mono">Find on page</span>
+                        <h3>Check it on any screen</h3>
+                        <p>The highlighter runs on your live site, only for logged-in admins who opened it from the plugin, and steps through every match on the page.</p>
+                    </div>
+                    <img src="../assets/images/wmc/mobile.webp" alt="A photo highlighted on a phone, with the match bar at the top" width="780" height="1500" loading="lazy">
+                </article>
+            </div>
+
+            <ul class="specs">
+                <li class="reveal"><span class="mono">01</span>Reads Gutenberg, Classic Editor, Elementor, WPBakery and Divi content.</li>
+                <li class="reveal"><span class="mono">02</span>Resumable scans with real progress, even on large libraries.</li>
+                <li class="reveal"><span class="mono">03</span>Nothing runs on the front end for your visitors.</li>
+                <li class="reveal"><span class="mono">04</span>"Delete All Unused" never touches files found in use.</li>
+                <li class="reveal"><span class="mono">05</span>Filter by type and by used or unused, or search by filename.</li>
+                <li class="reveal"><span class="mono">06</span>Uninstalling removes only its own data. Your media stays.</li>
+                <li class="reveal"><span class="mono">07</span>Admin screens are translation-ready.</li>
+                <li class="reveal"><span class="mono">08</span>WordPress 5.8+ and PHP 7.4+.</li>
+            </ul>
+        </section>
+
+        <!-- ─── Pro ──────────────────────────────────────────── -->
+        <section class="features" id="pro" aria-label="Pro">
+            <header class="sec-head">
+                <span class="eyebrow mono">(03) Pro</span>
+                <h2 class="sec-head__title reveal">An undo<br><em>for cleanup.</em></h2>
+            </header>
+
+            <div class="bento">
+                <article class="bento__card reveal">
+                    <img class="bento__shot" src="../assets/images/wmc/quarantine.webp" alt="The Quarantine screen listing removed files with Restore buttons" width="2222" height="1455" loading="lazy">
+                    <span class="mono">Quarantine</span>
+                    <h3>Removed, not gone</h3>
+                    <p>Removed files move to a protected quarantine and disappear from the Media Library. Check your site, then restore anything you needed with one click. They're deleted for good after 30 days, or however many you choose.</p>
+                </article>
+                <article class="bento__card reveal">
+                    <img class="bento__shot" src="../assets/images/wmc/merge.webp" alt="Duplicate groups with a Keep this one button on every copy" width="2222" height="1455" loading="lazy">
+                    <span class="mono">Merge duplicates</span>
+                    <h3>Keep one, fix every page</h3>
+                    <p>Click Keep this one. Posts, pages, featured images, product galleries, custom fields and Elementor layouts that used the other copies switch to the one you kept.</p>
+                </article>
+            </div>
+
+            <ul class="specs">
+                <li class="reveal"><span class="mono">01</span>WebP and AVIF copies move with their originals.</li>
+                <li class="reveal"><span class="mono">02</span>Files keep their attachment ID when restored.</li>
+                <li class="reveal"><span class="mono">03</span>Restoring still works if your license lapses.</li>
+                <li class="reveal"><span class="mono">04</span>Uninstalling Pro restores everything in quarantine.</li>
+            </ul>
+        </section>
+
+        <!-- ─── Pricing ──────────────────────────────────────── -->
+        <section class="pricing" id="pricing" aria-label="Pricing">
+            <header class="sec-head">
+                <span class="eyebrow mono">(04) Pricing</span>
+                <h2 class="sec-head__title reveal">Free to clean,<br><em>Pro to undo.</em></h2>
+            </header>
+
+            <div class="plans">
+                <article class="plan reveal">
+                    <span class="mono">Free <span class="plan__soon">Coming soon</span></span>
+                    <p class="plan__price">$0</p>
+                    <p class="plan__note">Waiting for WordPress.org review. It'll be a free download there once it's through.</p>
+                    <ul>
+                        <li>Full site scan with resumable steps</li>
+                        <li>Where every file is used, with Find on page</li>
+                        <li>Exact, scale and visual duplicate finder</li>
+                        <li>Filters, search and bulk delete</li>
+                        <li>Re-checks content right before deleting</li>
+                        <li>Support on the WordPress.org forum</li>
+                    </ul>
+                    <a class="btn" href="mailto:wisnuadi415@gmail.com?subject=Wisnoob%20Media%20Cleanup%20-%20tell%20me%20when%20it's%20live" data-cursor="Email">Tell me when it's live</a>
+                </article>
+                <article class="plan plan--pro reveal">
+                    <canvas class="plan__waves" data-waves="calm" aria-hidden="true"></canvas>
+                    <span class="mono">Pro</span>
+                    <p class="plan__price"><span data-plan-price>$29</span><small data-plan-cycle>/ year</small></p>
+                    <p class="plan__note">Yearly: updates and support for a year, renewing at 20% off. Lifetime: pay once, updates for life. 14-day money-back guarantee.</p>
+                    <fieldset class="licenses">
+                        <legend class="mono">Billing</legend>
+                        <label><input type="radio" name="cycle" value="annual" checked><span>Yearly</span></label>
+                        <label><input type="radio" name="cycle" value="lifetime"><span>Lifetime</span></label>
+                    </fieldset>
+                    <fieldset class="licenses">
+                        <legend class="mono">Sites</legend>
+                        <label><input type="radio" name="licenses" value="1" checked><span>1 site</span></label>
+                        <label><input type="radio" name="licenses" value="5"><span>5 sites</span></label>
+                        <label><input type="radio" name="licenses" value="unlimited"><span>Unlimited</span></label>
+                    </fieldset>
+                    <ul>
+                        <li>Everything in Free</li>
+                        <li>30-day quarantine with one-click restore</li>
+                        <li>Choose how long files stay, 1 to 365 days</li>
+                        <li>Merge duplicates and update every page that used them</li>
+                        <li>WebP and AVIF copies move with their originals</li>
+                    </ul>
+                    <a class="btn btn--solid" href="https://checkout.freemius.com/plugin/40992/plan/71073/?licenses=1" data-buy data-cursor="Buy">Buy Pro</a>
+                </article>
+            </div>
+        </section>
+
+        <!-- ─── FAQ ──────────────────────────────────────────── -->
+        <section class="faq" id="faq" aria-label="Questions">
+            <header class="sec-head">
+                <span class="eyebrow mono">(05) FAQ</span>
+                <h2 class="sec-head__title reveal">Good<br><em>questions.</em></h2>
+            </header>
+            <div class="faq__list">
+                <details>
+                    <summary>Is it safe?</summary>
+                    <p>It only deletes files you select, after you confirm, and only after a complete scan. Files found in use are skipped unless you say otherwise. It can't see every possible reference, so always keep a backup.</p>
+                </details>
+                <details>
+                    <summary>What can't it see?</summary>
+                    <p>Files referenced only from theme or plugin PHP code, hard-coded in theme CSS files, or linked from other websites. Check the Find on page result before deleting anything you're unsure about, or get Pro so you can restore it.</p>
+                </details>
+                <details>
+                    <summary>Will it slow down my site?</summary>
+                    <p>No. Scanning only happens when you click Scan in the admin. Nothing runs on the front end except the Find on page highlighter, and only for logged-in administrators who opened a page from the plugin.</p>
+                </details>
+                <details>
+                    <summary>Do I need the free plugin for Pro?</summary>
+                    <p>Yes. Pro is an add-on: install and activate the free plugin, then upload Pro and enter the license key from your purchase email under Media → Quarantine.</p>
+                </details>
+                <details>
+                    <summary>What happens when my license expires?</summary>
+                    <p>Deleting goes back to permanent and the merge button is hidden. Files already in quarantine stay there and can still be restored.</p>
+                </details>
+                <details>
+                    <summary>Can I move my license to another site?</summary>
+                    <p>Yes. Deactivate it on the old site under Media → Account, then activate it on the new one.</p>
+                </details>
+                <details>
+                    <summary>I need something custom.</summary>
+                    <p>I build custom WordPress work too. <a href="mailto:wisnuadi415@gmail.com?subject=Wisnoob%20Media%20Cleanup%20-%20custom%20work">Email me</a> with what your site needs.</p>
+                </details>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer" id="contact">
+        <canvas class="footer__waves" data-waves="calm" aria-hidden="true"></canvas>
+        <div class="footer__inner">
+            <span class="eyebrow mono">Wisnoob Media Cleanup</span>
+            <a class="footer__cta" href="#pricing" data-cursor="Pricing">Clean up, <em>with an undo.</em></a>
+            <div class="footer__grid">
+                <div>
+                    <h4 class="mono">Contact</h4>
+                    <a href="mailto:wisnuadi415@gmail.com">wisnuadi415@gmail.com</a>
+                    <a href="https://api.whatsapp.com/send?phone=6281558911373" target="_blank" rel="noopener">WhatsApp</a>
+                </div>
+                <div>
+                    <h4 class="mono">Plugin</h4>
+                    <a href="#how">How it works</a>
+                    <a href="#features">Features</a>
+                    <a href="#pro">Pro</a>
+                    <a href="#pricing">Pricing</a>
+                    <a href="#faq">FAQ</a>
+                </div>
+                <div>
+                    <h4 class="mono">Made by</h4>
+                    <a href="../">Wisnu Adi Kurniawan</a>
+                    <a href="https://github.com/wisnuub" target="_blank" rel="noopener">GitHub</a>
+                </div>
+                <div>
+                    <h4 class="mono">More plugins</h4>
+                    <a href="../bundle-builder/">Bundle Builder</a>
+                    <a href="https://github.com/wisnuub/wp-image-optimizer" target="_blank" rel="noopener">Image Optimizer</a>
+                </div>
+            </div>
+            <div class="footer__bar mono">
+                <span>&copy; <span data-year>2026</span> Wisnu Adi Kurniawan</span>
+                <a href="#top" data-top>Back to top ↑</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+    <script src="../assets/scripts/waves.js?v=19"></script>
+    <script src="../assets/scripts/script.js?v=23"></script>
+    <script src="https://checkout.freemius.com/js/v1/"></script>
+    <script>
+    // Pro checkout. The billing and licence pills set the price; "Buy Pro"
+    // opens the Freemius checkout over the page, or follows the checkout link
+    // if its script didn't load.
+    (function () {
+        var PRICES = {
+            annual: { '1': '$29', '5': '$59', unlimited: '$99' },
+            lifetime: { '1': '$79', '5': '$149', unlimited: '$249' }
+        };
+        var LINK = 'https://checkout.freemius.com/plugin/40992/plan/71073/';
+
+        var buy = document.querySelector('[data-buy]');
+        var price = document.querySelector('[data-plan-price]');
+        var cycleLabel = document.querySelector('[data-plan-cycle]');
+        var state = { cycle: 'annual', sites: '1' };
+
+        function update() {
+            price.textContent = PRICES[state.cycle][state.sites];
+            cycleLabel.textContent = 'lifetime' === state.cycle ? 'once' : '/ year';
+            buy.href = LINK + '?licenses=' + state.sites + '&billing_cycle=' + state.cycle;
+        }
+        document.querySelectorAll('input[name="cycle"], input[name="licenses"]').forEach(function (input) {
+            input.addEventListener('change', function () {
+                state['cycle' === input.name ? 'cycle' : 'sites'] = input.value;
+                update();
+            });
+        });
+        update();
+
+        if (!window.FS || !FS.Checkout) { return; }
+        var checkout = new FS.Checkout({
+            product_id: '40992',
+            plan_id: '71073',
+            public_key: 'pk_cb004aad9a6d948be284206a44f30',
+            image: 'https://wisnuub.github.io/assets/images/wmc/icon.png'
+        });
+        buy.addEventListener('click', function (e) {
+            e.preventDefault();
+            // Freemius appends the plan name ("Pro") itself.
+            checkout.open({ name: 'Wisnoob Media Cleanup', licenses: state.sites, billing_cycle: state.cycle });
+        });
+    })();
+    </script>
+</body>
+</html>
